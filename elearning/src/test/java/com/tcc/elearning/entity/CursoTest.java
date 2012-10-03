@@ -19,8 +19,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tcc.elearning.app.entity.Curso;
+import com.tcc.elearning.app.repository.CursoRepository;
 import com.tcc.elearning.config.ELearningConfig;
-import com.tcc.elearning.repository.CursoRepository;
 
 @ActiveProfiles("teste")
 @RunWith(SpringJUnit4ClassRunner.class)
