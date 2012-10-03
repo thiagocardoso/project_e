@@ -11,7 +11,6 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 
 import com.google.common.base.Objects;
@@ -114,4 +113,6 @@ public class Curso implements Serializable {
     public void setCriador(Usuario criador) {
 		this.criador = criador;
 	}
+    
+    
 }
