@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="3.418" errors="1" skipped="0" tests="1" name="com.tcc.elearning.entity.CursoTest">
+<testsuite failures="0" time="3.08" errors="0" skipped="0" tests="1" name="com.tcc.elearning.entity.CursoTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_04\jre\bin"/>
@@ -21,7 +21,7 @@
     <property name="basedir" value="H:\Java\workspace\project_e\elearning"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.7.0_04\jre\lib\endorsed"/>
     <property name="os.arch" value="amd64"/>
-    <property name="surefire.real.class.path" value="H:\Java\workspace\project_e\elearning\target\surefire\surefirebooter4640066057226815611.jar"/>
+    <property name="surefire.real.class.path" value="H:\Java\workspace\project_e\elearning\target\surefire\surefirebooter7279720054485118993.jar"/>
     <property name="java.io.tmpdir" value="C:\Users\thiago\AppData\Local\Temp\"/>
     <property name="line.separator" value="
 "/>
@@ -45,7 +45,7 @@
     <property name="java.vm.specification.version" value="1.7"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.7.0_04\jre"/>
-    <property name="sun.java.command" value="H:\Java\workspace\project_e\elearning\target\surefire\surefirebooter4640066057226815611.jar H:\Java\workspace\project_e\elearning\target\surefire\surefire3631677081075475032tmp H:\Java\workspace\project_e\elearning\target\surefire\surefire8683033313265026920tmp"/>
+    <property name="sun.java.command" value="H:\Java\workspace\project_e\elearning\target\surefire\surefirebooter7279720054485118993.jar H:\Java\workspace\project_e\elearning\target\surefire\surefire5301203926977883974tmp H:\Java\workspace\project_e\elearning\target\surefire\surefire6685341341863451836tmp"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="user.language.format" value="pt"/>
@@ -63,154 +63,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="3.188" classname="com.tcc.elearning.entity.CursoTest" name="novoCurso">
-    <error message="Failed to load ApplicationContext" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Failed to load ApplicationContext
-	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:157)
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:321)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:211)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:288)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:290)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:49)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:35)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:146)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:97)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:601)
-	at org.apache.maven.surefire.booter.ProviderFactory$ClassLoaderProxy.invoke(ProviderFactory.java:103)
-	at $Proxy0.invoke(Unknown Source)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:145)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcess(SurefireStarter.java:87)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:69)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;defaultServletHandlerMapping&apos; defined in class path resource [org/springframework/web/servlet/config/annotation/DelegatingWebMvcConfiguration.class]: Instantiation of bean failed; nested exception is org.springframework.beans.factory.BeanDefinitionStoreException: Factory method [public org.springframework.web.servlet.HandlerMapping org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport.defaultServletHandlerMapping()] threw exception; nested exception is java.lang.IllegalArgumentException: A ServletContext is required to configure default servlet handling
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:581)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1015)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:911)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:485)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:585)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:913)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:464)
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:103)
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:1)
-	at org.springframework.test.context.support.DelegatingSmartContextLoader.loadContext(DelegatingSmartContextLoader.java:228)
-	at org.springframework.test.context.TestContext.loadApplicationContext(TestContext.java:124)
-	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:148)
-	... 30 more
-Caused by: org.springframework.beans.factory.BeanDefinitionStoreException: Factory method [public org.springframework.web.servlet.HandlerMapping org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport.defaultServletHandlerMapping()] threw exception; nested exception is java.lang.IllegalArgumentException: A ServletContext is required to configure default servlet handling
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:169)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:570)
-	... 46 more
-Caused by: java.lang.IllegalArgumentException: A ServletContext is required to configure default servlet handling
-	at org.springframework.util.Assert.notNull(Assert.java:112)
-	at org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer.&lt;init&gt;(DefaultServletHandlerConfigurer.java:54)
-	at org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport.defaultServletHandlerMapping(WebMvcConfigurationSupport.java:253)
-	at org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration$$EnhancerByCGLIB$$f2c4bc56.CGLIB$defaultServletHandlerMapping$17(&lt;generated&gt;)
-	at org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration$$EnhancerByCGLIB$$f2c4bc56$$FastClassByCGLIB$$38816854.invoke(&lt;generated&gt;)
-	at net.sf.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:215)
-	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:280)
-	at org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration$$EnhancerByCGLIB$$f2c4bc56.defaultServletHandlerMapping(&lt;generated&gt;)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:601)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:149)
-	... 47 more
-</error>
-    <system-out>@HL
-@HL-------------------------------------------------------
-@HL T E S T S
-@HL-------------------------------------------------------
-@SLRunning com.tcc.elearning.entity.CursoTest
-2012-10-03 00:05:59,318 [main] ERROR org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5830d5d0] to prepare test instance [com.tcc.elearning.entity.CursoTest@6e2577eb]
-java.lang.IllegalStateException: Failed to load ApplicationContext
-	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:157)
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
-	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:321)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:211)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:288)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:290)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:49)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:35)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:146)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:97)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:601)
-	at org.apache.maven.surefire.booter.ProviderFactory$ClassLoaderProxy.invoke(ProviderFactory.java:103)
-	at $Proxy0.invoke(Unknown Source)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:145)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcess(SurefireStarter.java:87)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:69)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;defaultServletHandlerMapping&apos; defined in class path resource [org/springframework/web/servlet/config/annotation/DelegatingWebMvcConfiguration.class]: Instantiation of bean failed; nested exception is org.springframework.beans.factory.BeanDefinitionStoreException: Factory method [public org.springframework.web.servlet.HandlerMapping org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport.defaultServletHandlerMapping()] threw exception; nested exception is java.lang.IllegalArgumentException: A ServletContext is required to configure default servlet handling
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:581)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1015)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:911)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:485)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
-	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:585)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:913)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:464)
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:103)
-	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:1)
-	at org.springframework.test.context.support.DelegatingSmartContextLoader.loadContext(DelegatingSmartContextLoader.java:228)
-	at org.springframework.test.context.TestContext.loadApplicationContext(TestContext.java:124)
-	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:148)
-	... 30 more
-Caused by: org.springframework.beans.factory.BeanDefinitionStoreException: Factory method [public org.springframework.web.servlet.HandlerMapping org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport.defaultServletHandlerMapping()] threw exception; nested exception is java.lang.IllegalArgumentException: A ServletContext is required to configure default servlet handling
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:169)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:570)
-	... 46 more
-Caused by: java.lang.IllegalArgumentException: A ServletContext is required to configure default servlet handling
-	at org.springframework.util.Assert.notNull(Assert.java:112)
-	at org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer.&lt;init&gt;(DefaultServletHandlerConfigurer.java:54)
-	at org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport.defaultServletHandlerMapping(WebMvcConfigurationSupport.java:253)
-	at org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration$$EnhancerByCGLIB$$f2c4bc56.CGLIB$defaultServletHandlerMapping$17(&lt;generated&gt;)
-	at org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration$$EnhancerByCGLIB$$f2c4bc56$$FastClassByCGLIB$$38816854.invoke(&lt;generated&gt;)
-	at net.sf.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:215)
-	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:280)
-	at org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration$$EnhancerByCGLIB$$f2c4bc56.defaultServletHandlerMapping(&lt;generated&gt;)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:601)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:149)
-	... 47 more
-</system-out>
-  </testcase>
+  <testcase time="2.84" classname="com.tcc.elearning.entity.CursoTest" name="novoCurso"/>
 </testsuite>

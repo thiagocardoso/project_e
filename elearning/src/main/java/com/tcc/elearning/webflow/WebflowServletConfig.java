@@ -1,4 +1,4 @@
-package com.tcc.elearning.config.webflow;
+package com.tcc.elearning.webflow;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;

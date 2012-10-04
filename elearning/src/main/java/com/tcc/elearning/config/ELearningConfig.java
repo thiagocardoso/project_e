@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 
 @EnableSpringConfigured
 @Configuration
-@ComponentScan(basePackages = {"com.tcc.elearning", "com.tcc.elearning.config", "com.tcc.elearning.app.repository"}, scopedProxy = ScopedProxyMode.TARGET_CLASS, excludeFilters = @Filter(Controller.class))
+@ComponentScan(basePackages = {"com.tcc.elearning.app", "com.tcc.elearning.config"}, scopedProxy = ScopedProxyMode.TARGET_CLASS, excludeFilters = @Filter(Controller.class))
 public class ELearningConfig {
 
 }
