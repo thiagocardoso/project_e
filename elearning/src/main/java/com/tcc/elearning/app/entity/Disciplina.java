@@ -39,7 +39,9 @@ public class Disciplina implements Serializable {
     }
     
     public static Disciplina newDisciplina(){
-    	return new Disciplina();
+    	Disciplina disciplina = new Disciplina();
+    	disciplina.dataCriacao = new Date();
+    	return disciplina;
     }
     
     public static Disciplina newDisciplina(String nome, String descricao){   	

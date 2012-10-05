@@ -1,8 +1,6 @@
-package com.tcc.elearning.entity;
-
+package com.tcc.elearning.app.entity;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,42 +10,38 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tcc.elearning.app.entity.Curso;
-import com.tcc.elearning.app.repository.CursoRepository;
+import com.tcc.elearning.app.entity.Disciplina;
 import com.tcc.elearning.config.ELearningConfig;
 
 @ActiveProfiles("teste")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ELearningConfig.class)
 @TransactionConfiguration
-public class CursoTest {
+public class DisciplinaTest {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 	
 	@Test
 	@Transactional
-	public void novoCurso() {
-		Curso curso = Curso.newCurso();
+	public void novaDisciplina() {
+		Disciplina disciplina = Disciplina.newDisciplina();
 		
-		curso.setCodigo(123);
-		curso.setNome("curso 1");
-		curso.setDescricao("curso de teste!!!");
-		curso.setDataCriacao(new Date());		
+		disciplina.setNome("disciplina 1");
+		disciplina.setDescricao("disciplina de teste!!!");
 		
-		entityManager.persist(curso);
+		entityManager.persist(disciplina);
 		entityManager.flush();
 		
-		Query query = entityManager.createQuery("SELECT c FROM Curso c WHERE codigo=123");
-		ArrayList<Curso> result = (ArrayList<Curso>) query.getResultList();
-		Assert.assertEquals(new Integer(123), result.get(0).getCodigo());
+		Query query = entityManager.createQuery("SELECT d FROM Disciplina d WHERE nome= 'disciplina 1'");
+		ArrayList<Disciplina> result = (ArrayList<Disciplina>) query.getResultList();
+		Assert.assertEquals("disciplina 1", result.get(0).getNome());
 		
 	}
 

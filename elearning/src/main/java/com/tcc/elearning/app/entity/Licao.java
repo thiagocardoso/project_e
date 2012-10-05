@@ -11,6 +11,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import com.google.common.base.Objects;
+
 @Entity
 public class Licao implements Serializable {
 
@@ -33,4 +35,57 @@ public class Licao implements Serializable {
 
     Licao() {
     }
+    
+    public static final Licao newLicao(){
+    	Licao licao = new Licao();
+    	licao.dataCriacao = new Date();
+    	return licao;
+    }
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public Date getDataCriacao() {
+		return dataCriacao;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(this);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Licao){
+    		Licao other = (Licao) obj;
+    		return Objects.equal(this.nome, other.nome);
+    	}
+    	return false;
+	}
+
+	@Override
+	public String toString() {
+		return Objects.toStringHelper(Licao.class).add("nome", nome).toString();
+	}
 }

@@ -26,8 +26,6 @@ public class QExercicio extends EntityPathBase<Exercicio> {
 
     public final StringPath nome = createString("nome");
 
-    public final NumberPath<Integer> tipoExercicio = createNumber("tipoExercicio", Integer.class);
-
     public final NumberPath<Integer> version = createNumber("version", Integer.class);
 
     public QExercicio(String variable) {

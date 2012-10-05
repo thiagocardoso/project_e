@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 
 import com.google.common.base.Objects;
 
@@ -104,10 +105,6 @@ public class Curso implements Serializable {
 		return dataCriacao;
 	}
     
-    public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
-    
     public Usuario getCriador() {
 		return criador;
 	}
@@ -115,6 +112,4 @@ public class Curso implements Serializable {
     public void setCriador(Usuario criador) {
 		this.criador = criador;
 	}
-    
-    
 }

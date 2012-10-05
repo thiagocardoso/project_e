@@ -1,6 +1,14 @@
-package com.tcc.elearning.repository;
+package com.tcc.elearning.app.entity;
 
-import static org.junit.Assert.assertNotNull;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import junit.framework.Assert;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,29 +20,34 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tcc.elearning.app.entity.Curso;
-import com.tcc.elearning.app.entity.QCurso;
 import com.tcc.elearning.app.repository.CursoRepository;
 import com.tcc.elearning.config.ELearningConfig;
 
-@ActiveProfiles("desenvolvimento")
+@ActiveProfiles("teste")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ELearningConfig.class)
 @TransactionConfiguration
-public class CursoRepositoryTest {
+public class CursoTest {
 
-	@Autowired
-	CursoRepository cursoRepository;
+	@PersistenceContext
+	private EntityManager entityManager;
 	
 	@Test
 	@Transactional
-	public void save() {
+	public void novoCurso() {
 		Curso curso = Curso.newCurso();
-		curso.setCodigo(1234);
-		curso.setNome("curso teste!");
-		Curso cursoSalvo = cursoRepository.save(curso);
-		assertNotNull(cursoSalvo.getId());
-		assertNotNull(cursoRepository.findOne(cursoSalvo.getId()));
-		assertNotNull(cursoRepository.findOne(QCurso.curso.nome.eq("curso teste!")));
+		
+		curso.setCodigo(123);
+		curso.setNome("curso 1");
+		curso.setDescricao("curso de teste!!!");
+		
+		entityManager.persist(curso);
+		entityManager.flush();
+		
+		Query query = entityManager.createQuery("SELECT c FROM Curso c WHERE codigo=123");
+		ArrayList<Curso> result = (ArrayList<Curso>) query.getResultList();
+		Assert.assertEquals(new Integer(123), result.get(0).getCodigo());
+		
 	}
 
 }
