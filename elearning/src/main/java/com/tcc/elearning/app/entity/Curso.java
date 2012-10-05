@@ -44,7 +44,9 @@ public class Curso implements Serializable {
     }
     
     public final static Curso newCurso(){
-    	return new Curso();
+    	Curso curso = new Curso();
+    	curso.dataCriacao = new Date();
+    	return curso;
     }
     
     @Override
