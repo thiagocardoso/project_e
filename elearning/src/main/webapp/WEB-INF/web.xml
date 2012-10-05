@@ -61,7 +61,7 @@
 		</init-param>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>br.com.produtec.webflow.WebflowServletConfig</param-value>
+			<param-value>com.tcc.elearning.webflow.WebflowServletConfig</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
