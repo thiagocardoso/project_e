@@ -6,9 +6,9 @@
 	template="/WEB-INF/template/blank.xhtml">
 	<ui:define name="body">
 		<h:form>
-			<p:panel header="Cadastro de Curso">
+			<p:panel header="Cadastro de Cursos">
 				<h:panelGrid columns="3">
-					<h:outputLabel for="codigo" value="Código:" />
+					<h:outputLabel for="codigo" value="CÃ³digo:" />
 					<h:outputText id="codigo" value="#{curso.codigo}" />
 					<p:message for="codigo" />
 
@@ -16,7 +16,7 @@
 					<p:inputText id="nome" value="#{curso.nome}" size="60" />
 					<p:message for="nome" />
 	
-					<h:outputLabel for="descricao" value="Descrição:" />
+					<h:outputLabel for="descricao" value="DescriÃ§Ã£o:" />
 					<p:inputTextarea id="descricao" value="#{curso.descricao}" size="60" />
 					<p:message for="descricao" />
 				</h:panelGrid>
