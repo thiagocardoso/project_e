@@ -28,6 +28,8 @@ public class QCurso extends EntityPathBase<Curso> {
 
     public final StringPath descricao = createString("descricao");
 
+    public final ListPath<Disciplina, QDisciplina> disciplinas = this.<Disciplina, QDisciplina>createList("disciplinas", Disciplina.class, QDisciplina.class);
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath nome = createString("nome");

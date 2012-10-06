@@ -45,4 +45,32 @@ public class DisciplinaTest {
 		
 	}
 
+	@Test
+	@Transactional
+	public void adicionarMaterial(){
+		Disciplina disciplina = Disciplina.newDisciplina();
+		disciplina.setNome("disciplina 2");
+		disciplina.setDescricao("Teste de disciplina com material.");
+		
+		Material material = Material.newMaterial();
+		material.setNome("material 1");
+		material.setDescricao("material 1");
+		entityManager.persist(material);
+		
+		Material material2 = Material.newMaterial();
+		material2.setNome("material 2");
+		material2.setDescricao("material2");
+		entityManager.persist(material2);
+		
+		disciplina.getMateriais().add(material);
+		disciplina.getMateriais().add(material2);
+		
+		entityManager.persist(disciplina);
+		entityManager.flush();
+		
+		Query query = entityManager.createQuery("SELECT d FROM Disciplina d WHERE nome='disciplina 2'");
+		Disciplina result = (Disciplina) query.getResultList().get(0);
+		Assert.assertEquals(2, result.getMateriais().size());
+	}	
+	
 }

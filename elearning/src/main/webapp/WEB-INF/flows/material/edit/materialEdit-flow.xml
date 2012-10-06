@@ -6,21 +6,11 @@
 
 	<persistence-context></persistence-context>
 	
-	<view-state id="cursoList">
-		<transition on="buscar">
-			<evaluate expression="cursoController.getCursos()" result="viewScope.cursos" result-type="dataModel" />
-		</transition>
-		<transition on="novo" to="cursoEdit">
-			<evaluate expression="cursoController.novo()" result="flowScope.curso" />
-		</transition>
-		<transition on="editar" to="cursoEdit">
-			<set name="flowScope.curso" value="cursos.selectedRow" />
-		</transition>
-	</view-state>
-
-	<view-state id="cursoEdit">
+	<input name="material" required="true" />
+		
+	<view-state id="materialEdit">
 		<transition on="salvar" to="ok">
-			<evaluate expression="cursoFacade.save(curso)" />
+			<evaluate expression="materialFacade.save(material)" />
 		</transition>
 		<transition on="cancelar" to="cancel" />
 	</view-state>

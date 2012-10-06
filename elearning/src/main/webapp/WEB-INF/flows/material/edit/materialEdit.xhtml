@@ -5,20 +5,20 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/template/blank.xhtml">
 	<ui:define name="body">
-		<h:form>
-			<p:panel header="Cadastro de Cursos">
+		<h:form enctype="multipart/form-data">
+			<p:panel header="Cadastro de Materiais">
 				<h:panelGrid columns="3">
-					<h:outputLabel for="codigo" value="Código:" />
-					<h:inputText id="codigo" value="#{curso.codigo}" />
-					<p:message for="codigo" />
-
 					<h:outputLabel for="nome" value="Nome:" />
-					<p:inputText id="nome" value="#{curso.nome}" size="60" />
+					<p:inputText id="nome" value="#{material.nome}" size="60" />
 					<p:message for="nome" />
 	
-					<h:outputLabel for="descricao" value="Descrição:" />
-					<p:inputTextarea id="descricao" value="#{curso.descricao}" size="60" />
+					<h:outputLabel for="descricao" value="Descricao:" />
+					<p:inputTextarea id="descricao" value="#{material.descricao}" size="60" />
 					<p:message for="descricao" />
+					
+					<p:outputLabel for="arquivo" value="Arquivo:" />
+					<p:fileUpload id="arquivo" value="#{material.arquivo}" mode="simple" auto="true"/>
+					<p:message for="arquivo" />
 				</h:panelGrid>
 			</p:panel>
 			<p:commandButton value="Salvar" action="salvar" />

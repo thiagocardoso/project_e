@@ -2,19 +2,22 @@ package com.tcc.elearning.app.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
-import javax.validation.constraints.NotNull;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Lists;
 
 @Entity
 public class Curso implements Serializable {
@@ -40,6 +43,10 @@ public class Curso implements Serializable {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario criador;
+
+    @ManyToMany
+    @JoinTable(name = "curso_disciplina_join", joinColumns = @JoinColumn(name="curso_id"), inverseJoinColumns = @JoinColumn(name="disciplina_id"))
+    private List<Disciplina> disciplinas = Lists.newLinkedList();
     
     Curso() {
     }
@@ -111,5 +118,13 @@ public class Curso implements Serializable {
     
     public void setCriador(Usuario criador) {
 		this.criador = criador;
+	}
+    
+    public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+    
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
 }

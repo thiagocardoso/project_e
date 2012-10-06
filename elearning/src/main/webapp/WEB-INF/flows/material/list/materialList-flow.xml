@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<persistence-context></persistence-context>
+	
+	<input name="popup" type="java.lang.Boolean" />
+	
+	<view-state id="materialList">
+		<transition on="buscar">
+			<evaluate expression="materialController.getMateriais()" result="viewScope.materiais" result-type="dataModel" />
+		</transition>
+		<transition on="novo" to="ok">
+			<evaluate expression="materialController.novo()" result="flowScope.material" />
+		</transition>
+		<transition on="editar" to="ok">
+			<set name="flowScope.material" value="disciplinas.selectedRow" />
+		</transition>
+		<transition on="select" to="ok">
+			<set name="flowScope.material" value="disciplinas.selectedRow" />
+		</transition>
+	</view-state>
+
+	<end-state id="ok">
+		<output name="material" value="flowScope.material" />
+	</end-state>
+</flow>
