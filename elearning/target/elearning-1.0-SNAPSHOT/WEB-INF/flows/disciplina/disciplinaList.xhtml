@@ -7,18 +7,18 @@
 	template="/WEB-INF/template/blank.xhtml">
 	<ui:define name="body">
 		<h:form>
-			<p:panel header="Disciplinas">
+			<p:panel header="Cursos">
 				<p:fieldset id="busca">
 					<p:commandButton value="Buscar" action="buscar" update="@form" />
 				</p:fieldset>
 				<p:spacer height="5" />
-				<p:dataTable value="#{disciplinas}" var="d"
-					emptyMessage="Nenhuma disciplina encontrada.">
+				<p:dataTable value="#{cursos}" var="c"
+					emptyMessage="Nenhum curso encontrado.">
+					<p:column headerText="N.o">
+						<h:outputText value="#{c.codigo}" />
+					</p:column>
 					<p:column headerText="Nome">
-						<h:outputText value="#{d.nome}" />
-					</p:column>					
-					<p:column headerText="Descricao">
-						<h:outputText value="#{d.descricao}" />
+						<h:outputText value="#{c.nome}" />
 					</p:column>					
 					<p:column style="width: 80px">
 						<p:commandButton icon="ui-icon-pencil" action="editar" />

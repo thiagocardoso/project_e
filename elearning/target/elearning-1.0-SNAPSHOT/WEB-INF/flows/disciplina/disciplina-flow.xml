@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<persistence-context></persistence-context>
+	
+	<view-state id="disciplinaList">
+		<transition on="buscar">
+			<evaluate expression="disciplinaController.getDisciplinas()" result="viewScope.disciplinas" result-type="dataModel" />
+		</transition>
+		<transition on="novo" to="disciplinaEdit">
+			<evaluate expression="disciplinaController.novo()" result="flowScope.disciplina" />
+		</transition>
+		<transition on="editar" to="disciplinaEdit">
+			<set name="flowScope.disciplina" value="disciplinas.selectedRow" />
+		</transition>
+	</view-state>
+
+	<view-state id="disciplinaEdit">
+		<transition on="salvar" to="ok">
+			<evaluate expression="disciplinaFacade.save(disciplina)" />
+		</transition>
+		<transition on="cancelar" to="cancel" />
+	</view-state>
+
+	<end-state id="ok" commit="true" />
+	<end-state id="cancel" />
+</flow>

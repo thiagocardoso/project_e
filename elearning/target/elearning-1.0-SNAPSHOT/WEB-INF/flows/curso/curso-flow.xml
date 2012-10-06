@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<persistence-context></persistence-context>
+	
+	<view-state id="cursoList">
+		<transition on="buscar">
+			<evaluate expression="cursoController.getCursos()" result="viewScope.cursos" result-type="dataModel" />
+		</transition>
+		<transition on="novo" to="cursoEdit">
+			<evaluate expression="cursoController.novo()" result="flowScope.curso" />
+		</transition>
+		<transition on="editar" to="cursoEdit">
+			<set name="flowScope.curso" value="cursos.selectedRow" />
+		</transition>
+	</view-state>
+
+	<view-state id="cursoEdit">
+		<transition on="salvar" to="ok">
+			<evaluate expression="cursoFacade.save(curso)" />
+		</transition>
+		<transition on="cancelar" to="cancel" />
+	</view-state>
+
+	<end-state id="ok" commit="true" />
+	<end-state id="cancel" />
+</flow>

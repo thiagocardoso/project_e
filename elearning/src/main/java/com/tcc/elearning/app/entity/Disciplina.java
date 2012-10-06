@@ -25,8 +25,6 @@ public class Disciplina implements Serializable {
     @Version
     private Integer version;
     
-    private Integer codigo;
-    
     private String nome;
 
     @Lob
