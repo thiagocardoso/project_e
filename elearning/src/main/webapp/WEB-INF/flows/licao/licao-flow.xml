@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<persistence-context></persistence-context>
+	
+	<view-state id="licaoList">
+		<transition on="buscar">
+			<evaluate expression="licaoController.getLicoes()" result="viewScope.licoes" result-type="dataModel" />
+		</transition>
+		<transition on="novo" to="licaoEdit">
+			<evaluate expression="licaoController.novo()" result="flowScope.licao" />
+		</transition>
+		<transition on="editar" to="licaoEdit">
+			<set name="flowScope.licao" value="licoes.selectedRow" />
+		</transition>
+	</view-state>
+
+	<view-state id="licaoEdit">
+		<transition on="salvar" to="ok">
+			<evaluate expression="licaoFacade.save(licao)" />
+		</transition>
+		<transition on="cancelar" to="cancel" />
+	</view-state>
+
+	<end-state id="ok" commit="true" />
+	<end-state id="cancel" />
+</flow>

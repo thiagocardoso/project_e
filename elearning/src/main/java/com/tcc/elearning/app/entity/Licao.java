@@ -20,7 +20,7 @@ public class Licao implements Serializable {
     
 	@Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
 	@Version
 	private Integer version;
@@ -58,7 +58,7 @@ public class Licao implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -72,7 +72,7 @@ public class Licao implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(this);
+		return Objects.hashCode(this.nome);
 	}
 
 	@Override

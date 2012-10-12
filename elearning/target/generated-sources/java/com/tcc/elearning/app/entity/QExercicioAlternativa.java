@@ -52,7 +52,7 @@ public class QExercicioAlternativa extends EntityPathBase<ExercicioAlternativa> 
 
     public QExercicioAlternativa(Class<? extends ExercicioAlternativa> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.exercicio = inits.isInitialized("exercicio") ? new QExercicio(forProperty("exercicio")) : null;
+        this.exercicio = inits.isInitialized("exercicio") ? new QExercicio(forProperty("exercicio"), inits.get("exercicio")) : null;
     }
 
 }

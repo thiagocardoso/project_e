@@ -59,7 +59,7 @@ public class Curso implements Serializable {
     
     @Override
     public int hashCode() {
-    	return Objects.hashCode(this);
+    	return Objects.hashCode(this.codigo);
     }
     
     @Override

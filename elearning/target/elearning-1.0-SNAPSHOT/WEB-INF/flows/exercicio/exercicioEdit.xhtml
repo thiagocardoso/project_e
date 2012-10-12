@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/blank.xhtml">
+	<ui:define name="body">
+		<h:form>
+			<p:panel header="Cadastro de Exercicio">
+				<h:panelGrid columns="3">
+					<h:outputLabel for="nome" value="Nome:" />
+					<p:inputText id="nome" value="#{exercicio.nome}" size="60" />
+					<p:message for="nome" />
+	
+					<h:outputLabel for="descricao" value="Descricao:" />
+					<p:inputTextarea id="descricao" value="#{exercicio.descricao}" size="60" />
+					<p:message for="descricao" />
+					 
+					<h:outputLabel for="tipoExercicio" value="Tipo do Exercicio:" />
+					<p:selectOneMenu id="tipoExercicio" value="#{exercicio.tipoExercicio}" size="60">
+						<f:selectItem itemLabel="Dissertativo" itemValue="0" />
+						<f:selectItem itemLabel="Multipla Escolha" itemValue="1" />
+						<f:selectItem itemLabel="Relacione as Colunas" itemValue="2" />
+					</p:selectOneMenu>
+					<p:message for="tipoExercicio" />
+					
+				</h:panelGrid>
+			</p:panel>
+			<p:commandButton value="Salvar" action="salvar" />
+			<p:commandButton value="Cancelar" action="cancelar" />
+		</h:form>
+	</ui:define>
+</ui:composition>

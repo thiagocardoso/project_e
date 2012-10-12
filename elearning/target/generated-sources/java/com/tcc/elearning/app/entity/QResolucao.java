@@ -48,7 +48,7 @@ public class QResolucao extends EntityPathBase<Resolucao> {
 
     public QResolucao(Class<? extends Resolucao> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.exercicio = inits.isInitialized("exercicio") ? new QExercicio(forProperty("exercicio")) : null;
+        this.exercicio = inits.isInitialized("exercicio") ? new QExercicio(forProperty("exercicio"), inits.get("exercicio")) : null;
         this.exercicioAlternativa = inits.isInitialized("exercicioAlternativa") ? new QExercicioAlternativa(forProperty("exercicioAlternativa"), inits.get("exercicioAlternativa")) : null;
         this.usuario = inits.isInitialized("usuario") ? new QUsuario(forProperty("usuario")) : null;
     }

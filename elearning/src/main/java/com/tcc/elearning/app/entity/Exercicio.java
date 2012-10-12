@@ -4,15 +4,21 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
 import com.google.common.base.Objects;
+import com.tcc.elearning.app.entity.enums.TipoExercicioEnum;
 
 @Entity
 public class Exercicio implements Serializable {
@@ -21,7 +27,7 @@ public class Exercicio implements Serializable {
     
 	@Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
 	@Version
 	private Integer version;
@@ -34,9 +40,12 @@ public class Exercicio implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
     
-	//transformar em Enum
-    @Transient
-    private Integer tipoExercicio;
+    @Enumerated
+    private TipoExercicioEnum tipoExercicio;
+    
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario criador;
     
     Exercicio() {
     }
@@ -46,8 +55,27 @@ public class Exercicio implements Serializable {
     	exercicio.dataCriacao = new Date();
     	return exercicio;
     }
+
+    @Override
+	public int hashCode() {
+		return Objects.hashCode(this.nome);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Exercicio){
+    		Exercicio other = (Exercicio) obj;
+    		return Objects.equal(this.id, other.id);
+    	}
+    	return false;
+	}
+
+	@Override
+	public String toString() {
+		return Objects.toStringHelper(Exercicio.class).add("nome", nome).toString();
+	}    
     
-    public Integer getId() {
+    public Long getId() {
 		return id;
 	}
     
@@ -74,23 +102,20 @@ public class Exercicio implements Serializable {
     public Date getDataCriacao() {
 		return dataCriacao;
 	}
-    
-    @Override
-	public int hashCode() {
-		return Objects.hashCode(this);
+
+	public Usuario getCriador() {
+		return criador;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if(obj instanceof Exercicio){
-    		Exercicio other = (Exercicio) obj;
-    		return Objects.equal(this.nome, other.nome);
-    	}
-    	return false;
+	public void setCriador(Usuario criador) {
+		this.criador = criador;
 	}
 
-	@Override
-	public String toString() {
-		return Objects.toStringHelper(Exercicio.class).add("nome", nome).toString();
+	public TipoExercicioEnum getTipoExercicio() {
+		return tipoExercicio;
+	}
+
+	public void setTipoExercicio(TipoExercicioEnum tipoExercicio) {
+		this.tipoExercicio = tipoExercicio;
 	}
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<persistence-context></persistence-context>
+	
+	<view-state id="usuarioList">
+		<transition on="buscar">
+			<evaluate expression="usuarioController.getUsuarios()" result="viewScope.usuarios" result-type="dataModel" />
+		</transition>
+		<transition on="novo" to="usuarioEdit">
+			<evaluate expression="usuarioController.novo()" result="flowScope.usuario" />
+		</transition>
+		<transition on="editar" to="usuarioEdit">
+			<set name="flowScope.usuario" value="usuarios.selectedRow" />
+		</transition>
+	</view-state>
+
+	<view-state id="usuarioEdit">
+		<transition on="salvar" to="ok">
+			<evaluate expression="usuarioFacade.save(usuario)" />
+		</transition>
+		<transition on="cancelar" to="cancel" />
+	</view-state>
+
+	<end-state id="ok" commit="true" />
+	<end-state id="cancel" />
+</flow>
