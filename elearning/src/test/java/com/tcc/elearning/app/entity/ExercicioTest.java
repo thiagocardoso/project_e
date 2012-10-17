@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tcc.elearning.app.entity.enums.TipoExercicioEnum;
+import com.tcc.elearning.app.entity.enums.TipoExercicio;
 import com.tcc.elearning.config.ELearningConfig;
 
 @ActiveProfiles("teste")
@@ -37,14 +37,14 @@ public class ExercicioTest {
 		
 		exercicio.setNome("Exercicio 1");
 		exercicio.setDescricao("Descrição exercicio 1!");
-		exercicio.setTipoExercicio(TipoExercicioEnum.MULTIPLA_ESCOLHA);
+		exercicio.setTipoExercicio(TipoExercicio.MULTIPLA_ESCOLHA);
 		
 		entityManager.persist(exercicio);
 		entityManager.flush();
 		
 		Query query = entityManager.createQuery("SELECT e FROM Exercicio e WHERE nome='Exercicio 1'");
 		ArrayList<Exercicio> result = (ArrayList<Exercicio>) query.getResultList();
-		Assert.assertEquals(TipoExercicioEnum.MULTIPLA_ESCOLHA, result.get(0).getTipoExercicio());
+		Assert.assertEquals(TipoExercicio.MULTIPLA_ESCOLHA, result.get(0).getTipoExercicio());
 	}
 }
 

@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tcc.elearning.app.entity.Exercicio;
 import com.tcc.elearning.app.entity.QExercicio;
-import com.tcc.elearning.app.entity.enums.TipoExercicioEnum;
+import com.tcc.elearning.app.entity.enums.TipoExercicio;
 import com.tcc.elearning.config.ELearningConfig;
 
 @ActiveProfiles("desenvolvimento")
@@ -31,7 +31,7 @@ public class ExercicioRepositoryTest {
 		Exercicio exercicio = Exercicio.newExercicio();
 		exercicio.setNome("Exercicio teste 1");
 		exercicio.setDescricao("Descricao de exercicio 1");
-		exercicio.setTipoExercicio(TipoExercicioEnum.MULTIPLA_ESCOLHA);
+		exercicio.setTipoExercicio(TipoExercicio.MULTIPLA_ESCOLHA);
 		Exercicio exercicioSalvo = exercicioRepository.save(exercicio);
 		assertNotNull(exercicioSalvo.getId());
 		assertNotNull(exercicioRepository.findOne(exercicioSalvo.getId()));

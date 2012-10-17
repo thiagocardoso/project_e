@@ -4,21 +4,19 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.persistence.Version;
 
+import org.hibernate.annotations.Type;
+
 import com.google.common.base.Objects;
-import com.tcc.elearning.app.entity.enums.TipoExercicioEnum;
+import com.tcc.elearning.app.entity.enums.TipoExercicio;
 
 @Entity
 public class Exercicio implements Serializable {
@@ -40,8 +38,8 @@ public class Exercicio implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
     
-    @Enumerated
-    private TipoExercicioEnum tipoExercicio;
+    @Type(type="tipoExercicio")
+    private TipoExercicio tipoExercicio = TipoExercicio.DISSERTATIVO;
     
     @ManyToOne
     @JoinColumn(name = "usuario_id")
@@ -111,11 +109,11 @@ public class Exercicio implements Serializable {
 		this.criador = criador;
 	}
 
-	public TipoExercicioEnum getTipoExercicio() {
+	public TipoExercicio getTipoExercicio() {
 		return tipoExercicio;
 	}
 
-	public void setTipoExercicio(TipoExercicioEnum tipoExercicio) {
+	public void setTipoExercicio(TipoExercicio tipoExercicio) {
 		this.tipoExercicio = tipoExercicio;
 	}
 }

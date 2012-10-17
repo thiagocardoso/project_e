@@ -30,7 +30,7 @@ public class QExercicio extends EntityPathBase<Exercicio> {
 
     public final StringPath nome = createString("nome");
 
-    public final EnumPath<com.tcc.elearning.app.entity.enums.TipoExercicioEnum> tipoExercicio = createEnum("tipoExercicio", com.tcc.elearning.app.entity.enums.TipoExercicioEnum.class);
+    public final EnumPath<com.tcc.elearning.app.entity.enums.TipoExercicio> tipoExercicio = createEnum("tipoExercicio", com.tcc.elearning.app.entity.enums.TipoExercicio.class);
 
     public final NumberPath<Integer> version = createNumber("version", Integer.class);
 

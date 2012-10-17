@@ -6,14 +6,14 @@
 	template="/WEB-INF/template/blank.xhtml">
 	<ui:define name="body">
 		<h:form>
-			<p:panel header="Cadastro de Lições">
+			<p:panel header="Cadastro de Licoes">
 				<h:panelGrid columns="3">
 					<h:outputLabel for="nome" value="Nome:" />
 					<p:inputText id="nome" value="#{licao.nome}" size="60" />
 					<p:message for="nome" />
 	
-					<h:outputLabel for="descricao" value="Descrição:" />
-					<p:inputTextarea id="descricao" value="#{licao.descricao}" size="60" />
+					<h:outputLabel for="descricao" value="Descricao:" />
+					<p:editor id="descricao" value="#{licao.descricao}" size="60" />
 					<p:message for="descricao" />
 				</h:panelGrid>
 			</p:panel>

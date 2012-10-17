@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.tcc.elearning.app.entity.Curso;
 import com.tcc.elearning.app.entity.Disciplina;
 import com.tcc.elearning.app.facade.DisciplinaFacade;
 import com.tcc.elearning.app.repository.DisciplinaRepository;
