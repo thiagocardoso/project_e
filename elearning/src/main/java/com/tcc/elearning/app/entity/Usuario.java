@@ -1,19 +1,31 @@
 package com.tcc.elearning.app.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 
+import javax.annotation.concurrent.Immutable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
+import net.sf.cglib.beans.ImmutableBean;
+
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
+import com.tcc.elearning.app.seguranca.Permissao;
 
 @Entity
-public class Usuario implements Serializable {
+public class Usuario implements UserDetails, Serializable {
 
 	private static final long serialVersionUID = 1L;
     
@@ -28,14 +40,22 @@ public class Usuario implements Serializable {
     
     private String login;
     
+    private String password;
+    
 	@Email(message="O email fornecido não é um email válido!")
     private String email;
-
+	
+	@ElementCollection
+	@Enumerated(EnumType.STRING)
+	private List<Permissao> permissoes = Lists.newLinkedList();
+	
     Usuario() {
     }
 
     public final static Usuario newUsuario(){
-    	return new Usuario();
+    	Usuario usuario = new Usuario();
+    	usuario.permissoes.add(Permissao.ROLE_ALUNO);
+    	return usuario;
     } 
     
     @Override
@@ -87,5 +107,60 @@ public class Usuario implements Serializable {
 
 	public void setLogin(String login) {
 		this.login = login;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public List<Permissao> getPermissoes() {
+		return ImmutableList.copyOf(permissoes);
+	}
+
+	public boolean isAdmin(){
+		return permissoes.contains(Permissao.ROLE_ADMIN);
+	}
+	
+	public boolean isAluno(){
+		return permissoes.contains(Permissao.ROLE_ALUNO);
+	}
+	
+	public boolean isProfessor(){
+		return permissoes.contains(Permissao.ROLE_PROFESSOR);
+	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return ImmutableList.copyOf(permissoes);
+	}
+
+	@Override
+	public String getPassword() {
+		return password;
+	}
+
+	@Override
+	public String getUsername() {
+		return login;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 }

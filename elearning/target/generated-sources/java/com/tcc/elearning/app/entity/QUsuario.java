@@ -26,6 +26,10 @@ public class QUsuario extends EntityPathBase<Usuario> {
 
     public final StringPath nome = createString("nome");
 
+    public final StringPath password = createString("password");
+
+    public final ListPath<com.tcc.elearning.app.seguranca.Permissao, EnumPath<com.tcc.elearning.app.seguranca.Permissao>> permissoes = this.<com.tcc.elearning.app.seguranca.Permissao, EnumPath<com.tcc.elearning.app.seguranca.Permissao>>createList("permissoes", com.tcc.elearning.app.seguranca.Permissao.class, EnumPath.class);
+
     public final NumberPath<Integer> version = createNumber("version", Integer.class);
 
     public QUsuario(String variable) {
