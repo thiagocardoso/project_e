@@ -7,7 +7,8 @@ public enum Permissao implements GrantedAuthority {
 
 	ROLE_ALUNO,
 	ROLE_PROFESSOR,
-	ROLE_ADMIN;
+	ROLE_ADMIN,
+	ROLE_GUEST;
 
 	@Override
 	public String getAuthority() {

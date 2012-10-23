@@ -100,9 +100,7 @@
 	    <filter-name>deviceResolverRequestFilter</filter-name>
 	    <filter-class>org.springframework.mobile.device.DeviceResolverRequestFilter</filter-class>
 	</filter>
-	<!-- 
 	<welcome-file-list>
-		<welcome-file>spring/curso</welcome-file>
+		<welcome-file>home/</welcome-file>
 	</welcome-file-list>
-	 -->
 </web-app>

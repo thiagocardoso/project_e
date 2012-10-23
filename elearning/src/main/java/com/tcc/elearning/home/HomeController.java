@@ -2,30 +2,26 @@ package com.tcc.elearning.home;
 
 import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/mobile")
+@RequestMapping("/")
 public class HomeController {
 	
 	@ResponseBody
-	@RequestMapping(value = "/teste", method = RequestMethod.GET, produces = "text/plain")
-	public String home(Device device){
+	@RequestMapping(value = "/")
+	public ModelAndView home(Device device){
 		if(device.isNormal()){
-			System.out.println("Acessando por um browser comum!");
+			return new ModelAndView("redirect:/spring/web/curso");
 		}
 		
 		if(device.isMobile()){
-			System.out.println("Acessando por um browser de celular!");
+			return new ModelAndView("redirect:/spring/mobile/curso");
 		}
 		
-		if(device.isTablet()){
-			System.out.println("Acessando por um browser de tablet!");
-		}
-		
-		
-		return "teste";
+		return new ModelAndView("");	
 	}
 }

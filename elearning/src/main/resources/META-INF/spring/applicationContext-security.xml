@@ -6,9 +6,9 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
 	<http pattern="/spring/javax.faces.resource/**" security="none" />
-	<http pattern="/rest/**" security="none" />
+	<http pattern="/home/**" security="none" />
 	<http>
-		<anonymous />
+		<anonymous enabled="true" granted-authority="ROLE_GUEST" />
 		<intercept-url pattern="/**" access="ROLE_ADMIN" />
 		<http-basic />
 		<logout logout-url="/spring/logout" logout-success-url="/" />

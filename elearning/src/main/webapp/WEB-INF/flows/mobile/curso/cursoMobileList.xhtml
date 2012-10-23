@@ -1,0 +1,35 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+    	xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile"
+        contentType="text/html"
+    	renderKitId="PRIMEFACES_MOBILE">
+    
+    <pm:page title="Cursos">
+    	
+    	<!-- Listagem de Cursos -->
+    	<pm:view id="list">
+			<h:form id="listCursosForm">
+				<pm:header title="Cursos">
+                    <f:facet name="right">
+                        <p:commandButton value="Novo" icon="plus" action="novo" />
+                    </f:facet>
+                </pm:header>
+			
+				<pm:content>
+				 	<p:dataList id="cursosList" value="#{cursos}" var="c">
+							<p:commandLink value="#{c.nome}" action="show" />
+                    </p:dataList>
+				</pm:content>
+			</h:form>
+		</pm:view>
+		
+		<!-- Mostrar de Curso -->
+    	<pm:view id="show">
+			<h:form id="showCursoForm">
+			</h:form>
+		</pm:view>
+	</pm:page>
+</f:view>
