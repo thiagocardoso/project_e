@@ -4,13 +4,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-	<subflow-state id="list" subflow="material/list">
+	<subflow-state id="list" subflow="web/material/list">
 		<transition on="ok" to="edit">
 			<set name="flowScope.material" value="currentEvent.attributes.material" />
 		</transition>
 	</subflow-state>
 
-	<subflow-state id="edit" subflow="material/edit">
+	<subflow-state id="edit" subflow="web/material/edit">
 		<input name="material" value="flowScope.material" />
 		<transition on="ok" to="ok" />
 		<transition on="cancel" to="list" />

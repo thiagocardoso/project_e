@@ -6,7 +6,9 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
@@ -35,6 +37,10 @@ public class Material implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
+    
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario criador;
     
     Material(){
     }
@@ -81,9 +87,17 @@ public class Material implements Serializable {
 		return dataCriacao;
 	}
 	
+	public Usuario getCriador() {
+		return criador;
+	}
+
+	public void setCriador(Usuario criador) {
+		this.criador = criador;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(this);
+		return Objects.hashCode(this.nome);
 	}
 
 	@Override
