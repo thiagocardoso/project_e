@@ -23,6 +23,5 @@
 	</view-state>
 	
 	<end-state id="showOk">
-		<output name="curso" value="flowScope.curso"/>
 	</end-state>
 </flow>
