@@ -18,6 +18,8 @@ public class QDisciplina extends EntityPathBase<Disciplina> {
 
     public static final QDisciplina disciplina = new QDisciplina("disciplina");
 
+    public final ListPath<Curso, QCurso> cursos = this.<Curso, QCurso>createList("cursos", Curso.class, QCurso.class);
+
     public final DateTimePath<java.util.Date> dataCriacao = createDateTime("dataCriacao", java.util.Date.class);
 
     public final StringPath descricao = createString("descricao");

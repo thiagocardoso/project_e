@@ -1,0 +1,56 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+    	xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/mobile"
+        contentType="text/html"
+    	renderKitId="PRIMEFACES_MOBILE">
+    
+    <pm:page title="Cursos">
+    	
+    	<!-- Listagem de Cursos -->
+    	<pm:view id="list">
+			<h:form id="listCursosForm">
+				<pm:header title="Cursos">
+                </pm:header>
+			
+				<pm:content>
+				 	<p:dataList id="cursosList" value="#{cursos}" var="c" type="inset">
+				 			<p:commandLink value="#{c.nome}" onclick="PrimeFaces.navigate('#show', {reverse:false, transition:'slide'});" update=":showCurso">
+				 				<f:setPropertyActionListener target="#{cursoView.curso}" value="#{c}" />
+				 			</p:commandLink>
+                    </p:dataList>
+				</pm:content>
+			</h:form>
+		</pm:view>
+		
+		<!-- Mostrar de Curso -->
+    	<pm:view id="show">
+    		<pm:header title="Curso">
+    			<f:facet name="left">
+    				<p:commandLink value="Voltar" icon="back" onclick="PrimeFaces.navigate('#list', {reverse:true, transition:'slide'});" />
+    			</f:facet>
+    		</pm:header>
+    		
+    		<pm:content id="showCurso">
+    			<p:panel header="Informações">
+	    					<h2>Nome</h2>
+			    			<p><h:outputText value="#{cursoView.curso.nome}"/></p>
+
+	    					<h2>Descricao</h2>
+			    			<p><h:outputText value="#{cursoView.curso.descricao}"/></p>
+
+	    					<h2>Criador</h2>
+			    			<p><h:outputText value="#{cursoView.curso.criador.nome}"/></p>
+				</p:panel>
+				
+				<p:panel header="Disciplinas">
+		   			<p:dataList id="disciplinasList" value="#{cursoView.curso.disciplinas}" var="d" type="inset">
+						<p:commandLink value="#{d.nome}"/>
+		   			</p:dataList>
+				</p:panel>
+    		</pm:content>
+		</pm:view>
+	</pm:page>
+</f:view>

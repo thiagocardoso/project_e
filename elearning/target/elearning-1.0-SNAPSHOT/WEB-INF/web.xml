@@ -14,6 +14,12 @@
 		<param-name>contextClass</param-name>
 		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
 	</context-param>
+	<!-- Prime Faces Theme -->
+	<context-param>  
+	    <param-name>primefaces.THEME</param-name>  
+	    <param-value>sunny</param-value>  
+	</context-param> 
+	<!--  -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>com.tcc.elearning.config.ELearningConfig</param-value>
@@ -75,7 +81,7 @@
 		</init-param>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>br.com.elearning.webflow.HomeServletConfig</param-value>
+			<param-value>com.tcc.elearning.webflow.HomeServletConfig</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -100,9 +106,7 @@
 	    <filter-name>deviceResolverRequestFilter</filter-name>
 	    <filter-class>org.springframework.mobile.device.DeviceResolverRequestFilter</filter-class>
 	</filter>
-	<!-- 
 	<welcome-file-list>
-		<welcome-file>spring/curso</welcome-file>
+		<welcome-file>home/</welcome-file>
 	</welcome-file-list>
-	 -->
 </web-app>

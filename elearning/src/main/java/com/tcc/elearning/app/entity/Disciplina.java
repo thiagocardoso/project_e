@@ -42,6 +42,9 @@ public class Disciplina implements Serializable {
 	@JoinTable(name = "disciplina_material", joinColumns = @JoinColumn(name = "disciplina_id"), inverseJoinColumns = @JoinColumn(name="material_id"))
 	private List<Material> materiais = Lists.newLinkedList();
 	
+	@ManyToMany(mappedBy="disciplinas")
+	private List<Curso> cursos;
+	
 	Disciplina() {
 	}
 
@@ -121,5 +124,9 @@ public class Disciplina implements Serializable {
 	
 	public void setMateriais(List<Material> materiais) {
 		this.materiais = materiais;
-	}	
+	}
+
+	public List<Curso> getCursos() {
+		return cursos;
+	}
 }

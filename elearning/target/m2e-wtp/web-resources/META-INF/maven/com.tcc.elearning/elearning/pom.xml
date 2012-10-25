@@ -332,6 +332,11 @@
 		    <artifactId>primefaces-mobile</artifactId>  
 		    <version>${primefaces-mobile.version}</version>  
 		</dependency>  
+		<dependency>  
+		    <groupId>org.primefaces.themes</groupId>  
+		    <artifactId>sunny</artifactId>  
+		    <version>1.0.8</version>  
+		</dependency> 
 		<!-- Database -->
 		<dependency>
 			<groupId>commons-pool</groupId>
