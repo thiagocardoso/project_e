@@ -9,7 +9,7 @@
 	<http pattern="/home/**" security="none" />
 	<http>
 		<anonymous enabled="true" granted-authority="ROLE_GUEST" />
-		<intercept-url pattern="/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/**" access="ROLE_ADMIN,ROLE_ALUNO" />
 		<http-basic />
 		<logout logout-url="/spring/logout" logout-success-url="/" />
 	</http>

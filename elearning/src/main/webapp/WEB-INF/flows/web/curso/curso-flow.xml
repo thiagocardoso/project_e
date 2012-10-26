@@ -4,9 +4,17 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-	<persistence-context></persistence-context>
+	<persistence-context />
+	
+	<on-start>
+		<set name="flowScope.usuarioAtual" value="applicationController.usuarioAtivo"/>
+	</on-start>
 	
 	<view-state id="cursoList">
+		<on-render>
+			<evaluate expression="cursoController.getCursos()" result="viewScope.cursos" result-type="dataModel" />
+		</on-render>
+	
 		<transition on="buscar">
 			<evaluate expression="cursoController.getCursos()" result="viewScope.cursos" result-type="dataModel" />
 		</transition>
@@ -16,11 +24,27 @@
 		<transition on="editar" to="cursoEdit">
 			<set name="flowScope.curso" value="cursos.selectedRow" />
 		</transition>
+		<transition on="matricular">
+			<evaluate expression="usuarioController.matricular(usuarioAtual, cursos.selectedRow)" />
+		</transition>
+		<transition on="visualizar" to="cursoShow">
+			<set name="flowScope.curso" value="cursos.selectedRow" />
+		</transition>
 	</view-state>
 
 	<view-state id="cursoEdit">
 		<transition on="salvar" to="ok">
 			<evaluate expression="cursoFacade.save(curso)" />
+		</transition>
+		<transition on="cancelar" to="cancel" />
+	</view-state>
+	
+	<view-state id="cursoShow">
+		<transition on="matricular">
+			<evaluate expression="usuarioController.matricular(usuarioAtual, curso)" />
+		</transition>
+		<transition on="desmatricular">
+			<evaluate expression="usuarioController.desmatricular(usuarioAtual, curso)" />
 		</transition>
 		<transition on="cancelar" to="cancel" />
 	</view-state>

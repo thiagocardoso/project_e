@@ -34,6 +34,8 @@ public class QCurso extends EntityPathBase<Curso> {
 
     public final StringPath nome = createString("nome");
 
+    public final ListPath<Usuario, QUsuario> usuarios = this.<Usuario, QUsuario>createList("usuarios", Usuario.class, QUsuario.class);
+
     public final NumberPath<Integer> version = createNumber("version", Integer.class);
 
     public QCurso(String variable) {

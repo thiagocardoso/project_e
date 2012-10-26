@@ -11,6 +11,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Version;
 
 import net.sf.cglib.beans.ImmutableBean;
@@ -48,6 +51,10 @@ public class Usuario implements UserDetails, Serializable {
 	@ElementCollection
 	@Enumerated(EnumType.STRING)
 	private List<Permissao> permissoes = Lists.newLinkedList();
+
+	@ManyToMany
+    @JoinTable(name = "usuario_curso", joinColumns = @JoinColumn(name="usuario_id"), inverseJoinColumns = @JoinColumn(name="curso_id"))
+    private List<Curso> cursos = Lists.newLinkedList();	
 	
     Usuario() {
     }
@@ -127,6 +134,18 @@ public class Usuario implements UserDetails, Serializable {
 	
 	public boolean isProfessor(){
 		return permissoes.contains(Permissao.ROLE_PROFESSOR);
+	}
+	
+	public List<Curso> getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
+	}
+
+	public boolean isMatriculado(Curso curso){
+		return this.cursos.contains(curso);
 	}
 	
 	@Override

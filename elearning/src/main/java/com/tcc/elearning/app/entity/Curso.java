@@ -48,6 +48,9 @@ public class Curso implements Serializable {
     @JoinTable(name = "curso_disciplina_join", joinColumns = @JoinColumn(name="curso_id"), inverseJoinColumns = @JoinColumn(name="disciplina_id"))
     private List<Disciplina> disciplinas = Lists.newLinkedList();
     
+    @ManyToMany(mappedBy = "cursos")
+    private List<Usuario> usuarios;
+    
     Curso() {
     }
     
@@ -126,5 +129,13 @@ public class Curso implements Serializable {
     
     public void setDisciplinas(List<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
+	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 }
