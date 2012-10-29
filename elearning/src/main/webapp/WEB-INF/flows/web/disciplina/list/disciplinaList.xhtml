@@ -6,7 +6,7 @@
 	xmlns:sec="http://www.springframework.org/security/tags"
 	template="/WEB-INF/template/blank.xhtml">
 	<ui:define name="body">
-		<h:form>
+		<h:form id="disciplina">
 			<p:panel header="Disciplinas">
 				<p:fieldset id="busca">
 					<p:commandButton value="Buscar" action="buscar" update="@form" />
@@ -16,16 +16,20 @@
 					emptyMessage="Nenhuma disciplina encontrada.">
 					<p:column headerText="Nome">
 						<h:outputText value="#{d.nome}" />
-					</p:column>					
+					</p:column>
 					<p:column headerText="Descricao">
 						<h:outputText value="#{d.descricao}" />
-					</p:column>					
+					</p:column>
 					<p:column style="width: 80px">
-						<p:commandButton icon="ui-icon-pencil" action="editar" />
+						<p:commandButton icon="ui-icon-pencil" action="editar"
+							rendered="#{not popup}" />
+						<p:commandButton icon="ui-icon-circle-check" action="select"
+							rendered="#{popup}" update="@all"
+							oncomplete="disciplinaDialog.hide();" />
 					</p:column>
 				</p:dataTable>
 			</p:panel>
-			<p:commandButton value="Novo" action="novo" />
+			<p:commandButton value="Novo" action="novo" rendered="#{not popup}"/>
 		</h:form>
 	</ui:define>
 </ui:composition>

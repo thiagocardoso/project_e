@@ -22,13 +22,13 @@
 			<evaluate expression="cursoController.novo()" result="flowScope.curso" />
 		</transition>
 		<transition on="editar" to="cursoEdit">
-			<set name="flowScope.curso" value="cursos.selectedRow" />
+			<set name="conversationScope.curso" value="cursos.selectedRow" />
 		</transition>
 		<transition on="matricular">
 			<evaluate expression="usuarioController.matricular(usuarioAtual, cursos.selectedRow)" />
 		</transition>
 		<transition on="visualizar" to="cursoShow">
-			<set name="flowScope.curso" value="cursos.selectedRow" />
+			<set name="conversationScope.curso" value="cursos.selectedRow" />
 		</transition>
 	</view-state>
 
@@ -40,6 +40,7 @@
 	</view-state>
 	
 	<view-state id="cursoShow">
+		<transition on="adicionarDisciplina" to="disciplinaList" />
 		<transition on="matricular">
 			<evaluate expression="usuarioController.matricular(usuarioAtual, curso)" />
 		</transition>
@@ -48,16 +49,17 @@
 		</transition>
 		<transition on="cancelar" to="cancel" />
 	</view-state>
-	<!-- 
-	<subflow-state id="disciplinaList" subflow="disciplina/list">
+
+	<subflow-state id="disciplinaList" subflow="web/disciplina/list">
 		<input name="mode" value="'embedded'" />
 		<input name="popup" value="true" />
-		<transition on="ok" to="cursoEdit">
-			<evaluate expression="curso.disciplinas.add(disciplina)" />
+		<transition on="ok" to="cursoShow">
+			<evaluate expression="curso.disciplinas.add(currentEvent.attributes.disciplina)" />
+			<evaluate expression="cursoFacade.save(curso)" />
 		</transition>
-		<transition on="cancel" to="cursoEdit" />
+		<transition on="cancel" to="cursoShow" />
 	</subflow-state>
-  -->
+
 	<end-state id="ok" commit="true" />
 	<end-state id="cancel" />
 </flow>

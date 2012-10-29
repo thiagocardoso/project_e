@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	template="/WEB-INF/template/blank.xhtml">
+	<ui:define name="body">
+		<h:form>
+			<p:panel header="Cadastro de Usuário">
+				<h:panelGrid columns="2">
+					<h:outputLabel for="nome" value="Nome:" />
+					<h:outputText id="nome" value="#{usuario.nome}" />
+	
+					<h:outputLabel for="email" value="Email:" />
+					<h:outputText id="email" value="#{usuario.email}" />
+					
+					<h:outputLabel for="login" value="Login:" />
+					<h:outputText id="login" value="#{usuario.login}" />
+				</h:panelGrid>
+				
+				
+<!-- 				<sec:authorize ifAnyGranted="ROLE_ADMIN"> -->
+<!-- 					<h:panelGrid columns="2"> -->
+<!-- 						<p:outputPanel /> -->
+<!-- 						<p:selectBooleanCheckbox value="#{usuario.admin}" onchange="usuarioController.changeAdmin(usuario)" > Administrador </p:selectBooleanCheckbox> -->
+		
+<!-- 						<p:outputPanel /> -->
+<!-- 						<p:selectBooleanCheckbox value="#{usuario.aluno}" onchange="usuarioController.changeAluno(usuario)"> Aluno </p:selectBooleanCheckbox> -->
+		
+<!-- 						<p:outputPanel />	 -->
+<!-- 						<p:selectBooleanCheckbox value="#{usuario.professor}" onchange="usuarioController.changeProfessor(usuario)"> Professor </p:selectBooleanCheckbox> -->
+<!-- 					</h:panelGrid> -->
+<!-- 				</sec:authorize> -->
+			</p:panel>
+			<p:commandButton value="Salvar" action="salvar" />
+			<p:commandButton value="Cancelar" action="cancelar" />
+		</h:form>
+	</ui:define>
+</ui:composition>

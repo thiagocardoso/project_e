@@ -4,6 +4,7 @@ encoding//src/main/resources=UTF-8
 encoding//src/main/webapp/WEB-INF/flows/mobile/curso/cursoMobileList.xhtml=UTF-8
 encoding//src/main/webapp/WEB-INF/flows/web/curso/cursoEdit.xhtml=UTF-8
 encoding//src/main/webapp/WEB-INF/flows/web/curso/cursoList.xhtml=UTF-8
+encoding//src/main/webapp/WEB-INF/flows/web/curso/cursoShow.xhtml=UTF-8
 encoding//src/main/webapp/WEB-INF/flows/web/exercicio/exercicioEdit.xhtml=UTF-8
 encoding//src/main/webapp/WEB-INF/flows/web/exercicio/exercicioList.xhtml=UTF-8
 encoding//src/main/webapp/WEB-INF/flows/web/licao/licaoEdit.xhtml=UTF-8

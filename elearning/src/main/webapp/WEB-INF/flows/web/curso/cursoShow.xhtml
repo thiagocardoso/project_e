@@ -3,10 +3,11 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/tags"
 	template="/WEB-INF/template/blank.xhtml">
 	<ui:define name="body">
 		<h:form>
-			<p:panel header="Cadastro de Cursos">
+			<p:panel header="Informações do Curso">
 				<h:panelGrid columns="2">
 					<h:outputLabel for="codigo" value="Código:" />
 					<h:outputText id="codigo" value="#{curso.codigo}" />
@@ -17,14 +18,24 @@
 					<h:outputLabel for="descricao" value="Descrição:" />
 					<h:outputText id="descricao" value="#{curso.descricao}" />
 				</h:panelGrid>
-				<h:panelGrid columns="3" title="Disciplinas" style="width:400px;">
-					<p:dataTable value="#{curso.disciplinas}" var="d" emptyMessage="Não existem disciplinas cadastradas.">
+				<h:panelGrid columns="1" title="Disciplinas" style="width:400px;">
+					<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_TUTOR">
+						<p:commandButton icon="ui-icon-circle-plus"
+							value="Adicionar Disciplina" action="adicionarDisciplina"
+							immediate="true" update=":disciplina"
+							oncomplete="disciplinaDialog.show();" />
+					</sec:authorize>
+					<p:dataTable value="#{curso.disciplinas}" var="d"
+						emptyMessage="Não existem disciplinas cadastradas.">
 						<p:column headerText="Disciplina" style="width:90%">
-							<h:outputText value="#{d.nome}"/>
+							<h:outputText value="#{d.nome}" />
 						</p:column>
-						<p:column headerText="Ações" style="width:10%">
-							<p:commandButton icon="ui-icon-trash" style="width=18px;" action="salvar"/>
-						</p:column>
+						<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_TUTOR">
+							<p:column headerText="Ações" style="width:10%">
+								<p:commandButton icon="ui-icon-trash" style="width=18px;"
+									action="salvar" />
+							</p:column>
+						</sec:authorize>
 					</p:dataTable>
 				</h:panelGrid>
 			</p:panel>
@@ -37,5 +48,11 @@
 								disabled="#{not usuarioController.isMatriculado(usuarioAtual, curso)}" />
 			<p:commandButton value="Voltar" action="cancelar" />		
 		</h:form>
+		
+		<p:dialog widgetVar="disciplinaDialog" modal="true"
+			header="Selecione a Disciplina">
+			<h:form id="disciplina">
+			</h:form>
+		</p:dialog>		
 	</ui:define>
 </ui:composition>
