@@ -8,24 +8,30 @@
 	<ui:define name="body">
 		<h:form>
 			<p:panel header="Cursos">
-				<p:fieldset id="busca">
-					<p:commandButton value="Buscar" action="buscar" update="@form" />
-				</p:fieldset>
-				<p:spacer height="5" />
 				<p:dataTable value="#{cursos}" var="c"
 					emptyMessage="Nenhum curso encontrado.">
-					<p:column headerText="N.o">
+					<p:column headerText="Código" style="width:6%; text-align:center;">
 						<h:outputText value="#{c.codigo}" />
 					</p:column>
-					<p:column headerText="Nome">
+					<p:column headerText="Nome" style="width:84%;">
 						<h:outputText value="#{c.nome}" />
-					</p:column>					
-					<p:column style="width: 80px">
-						<p:commandButton icon="ui-icon-pencil" action="editar" />
+					</p:column>
+					<p:column headerText="Ações" style="width:50px; text-align:center;">
+						<p:commandButton icon="ui-icon-circle-zoomin" action="visualizar" />
+						<sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_TUTOR">
+							<p:commandButton icon="ui-icon-pencil" action="editar" />
+						</sec:authorize>
+						<sec:authorize ifAnyGranted="ROLE_ALUNO">
+							<p:commandButton icon="ui-icon-circle-check" action="matricular"
+								immediate="true" update="@form"
+								disabled="#{usuarioController.isMatriculado(usuarioAtual, c)}" />
+						</sec:authorize>
 					</p:column>
 				</p:dataTable>
 			</p:panel>
-			<p:commandButton value="Novo" action="novo" />
+			<sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_TUTOR">
+				<p:commandButton value="Novo" action="novo" />
+			</sec:authorize>
 		</h:form>
 	</ui:define>
 </ui:composition>

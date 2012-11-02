@@ -4,27 +4,17 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-	<persistence-context></persistence-context>
-	
-	<view-state id="licaoList">
-		<transition on="buscar">
-			<evaluate expression="licaoController.getLicoes()" result="viewScope.licoes" result-type="dataModel" />
+	<subflow-state id="list" subflow="web/licao/list">
+		<transition on="ok" to="edit">
+			<set name="flowScope.licao" value="currentEvent.attributes.licao" />
 		</transition>
-		<transition on="novo" to="licaoEdit">
-			<evaluate expression="licaoController.novo()" result="flowScope.licao" />
-		</transition>
-		<transition on="editar" to="licaoEdit">
-			<set name="flowScope.licao" value="licoes.selectedRow" />
-		</transition>
-	</view-state>
+	</subflow-state>
 
-	<view-state id="licaoEdit">
-		<transition on="salvar" to="ok">
-			<evaluate expression="licaoFacade.save(licao)" />
-		</transition>
-		<transition on="cancelar" to="cancel" />
-	</view-state>
+	<subflow-state id="edit" subflow="web/licao/edit">
+		<input name="licao" value="flowScope.licao" />
+		<transition on="ok" to="ok" />
+		<transition on="cancel" to="list" />
+	</subflow-state>
 
-	<end-state id="ok" commit="true" />
-	<end-state id="cancel" />
+	<end-state id="ok" />
 </flow>

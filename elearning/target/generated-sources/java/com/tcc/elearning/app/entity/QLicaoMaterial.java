@@ -46,7 +46,7 @@ public class QLicaoMaterial extends EntityPathBase<LicaoMaterial> {
 
     public QLicaoMaterial(Class<? extends LicaoMaterial> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.licao = inits.isInitialized("licao") ? new QLicao(forProperty("licao")) : null;
+        this.licao = inits.isInitialized("licao") ? new QLicao(forProperty("licao"), inits.get("licao")) : null;
         this.material = inits.isInitialized("material") ? new QMaterial(forProperty("material"), inits.get("material")) : null;
     }
 

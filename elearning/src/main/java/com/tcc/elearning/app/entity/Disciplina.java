@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
@@ -44,6 +46,9 @@ public class Disciplina implements Serializable {
 	
 	@ManyToMany(mappedBy="disciplinas")
 	private List<Curso> cursos;
+	
+	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
+	private List<Licao> licoes = Lists.newLinkedList();
 	
 	Disciplina() {
 	}
@@ -128,5 +133,18 @@ public class Disciplina implements Serializable {
 
 	public List<Curso> getCursos() {
 		return cursos;
+	}
+
+	public List<Licao> getLicoes() {
+		return licoes;
+	}
+
+	public void setLicoes(List<Licao> licoes) {
+		this.licoes = licoes;
+	}
+	
+	public Disciplina addLicao(Licao licao){
+		this.licoes.add(licao);
+		return this;
 	}
 }

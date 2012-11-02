@@ -25,10 +25,10 @@
 							immediate="true" update=":disciplina"
 							oncomplete="disciplinaDialog.show();" />
 					</sec:authorize>
-					<p:dataTable value="#{disciplinas}" var="d"
+					<p:dataTable value="#{curso.disciplinas}" var="d"
 						emptyMessage="Não existem disciplinas cadastradas.">
 						<p:column headerText="Disciplina" style="width:90%">
-							<p:commandLink value="#{d.nome}" action="mostrarDisciplina" />
+							<h:outputText value="#{d.nome}" />
 						</p:column>
 						<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_TUTOR">
 							<p:column headerText="Ações" style="width:10%">

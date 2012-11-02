@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/template/blank.xhtml">
 	<ui:define name="body">
-		<h:form>
+		<h:form id="licao">
 			<p:panel header="Cadastro de Licoes">
 				<h:panelGrid columns="3">
 					<h:outputLabel for="nome" value="Nome:" />
@@ -17,7 +17,7 @@
 					<p:message for="descricao" />
 				</h:panelGrid>
 			</p:panel>
-			<p:commandButton value="Salvar" action="salvar" />
+			<p:commandButton value="Salvar" action="salvar" update="@form" />
 			<p:commandButton value="Cancelar" action="cancelar" />
 		</h:form>
 	</ui:define>

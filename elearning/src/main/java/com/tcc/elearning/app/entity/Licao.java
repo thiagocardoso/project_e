@@ -6,7 +6,9 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
@@ -33,6 +35,10 @@ public class Licao implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
 
+    @ManyToOne
+    @JoinColumn(name = "disciplina_id")
+    private Disciplina disciplina;    
+    
     Licao() {
     }
     
@@ -68,6 +74,14 @@ public class Licao implements Serializable {
 
 	public Date getDataCriacao() {
 		return dataCriacao;
+	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 
 	@Override

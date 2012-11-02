@@ -29,6 +29,7 @@
 		</transition>
 		<transition on="visualizar" to="cursoShow">
 			<set name="conversationScope.curso" value="cursos.selectedRow" />
+			<evaluate expression="curso.disciplinas" result="flowScope.disciplinas" result-type="dataModel" />
 		</transition>
 	</view-state>
 
@@ -40,12 +41,18 @@
 	</view-state>
 	
 	<view-state id="cursoShow">
+		<on-entry>
+			<set name="viewScope.disciplinas" value="disciplinas" type="dataModel" />
+		</on-entry>
 		<transition on="adicionarDisciplina" to="disciplinaList" />
 		<transition on="matricular">
 			<evaluate expression="usuarioController.matricular(usuarioAtual, curso)" />
 		</transition>
 		<transition on="desmatricular">
 			<evaluate expression="usuarioController.desmatricular(usuarioAtual, curso)" />
+		</transition>
+		<transition on="mostrarDisciplina" to="disciplinaShow">
+			<set name="conversationScope.disciplina" value="disciplinas.selectedRow"/>
 		</transition>
 		<transition on="cancelar" to="cancel" />
 	</view-state>
@@ -56,6 +63,13 @@
 		<transition on="ok" to="cursoShow">
 			<evaluate expression="curso.disciplinas.add(currentEvent.attributes.disciplina)" />
 			<evaluate expression="cursoFacade.save(curso)" />
+		</transition>
+		<transition on="cancel" to="cursoShow" />
+	</subflow-state>
+	
+	<subflow-state id="disciplinaShow" subflow="web/disciplina/show">
+		<input name="disciplina" value="disciplina" />
+		<transition on="ok" to="cursoShow">
 		</transition>
 		<transition on="cancel" to="cursoShow" />
 	</subflow-state>

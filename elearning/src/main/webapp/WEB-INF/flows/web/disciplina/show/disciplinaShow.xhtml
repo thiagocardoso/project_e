@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	template="/WEB-INF/template/blank.xhtml">
+	<ui:define name="body">
+		<p:panel header="Informacoes da Disciplina">
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputLabel for="nome" value="Nome:" />
+					<h:outputText id="nome" value="#{disciplina.nome}" />
+
+					<h:outputLabel for="descricao" value="Descricao:" />
+					<h:outputText id="descricao" value="#{disciplina.descricao}" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="1">
+					<p:commandButton value="Nova Licao" action="novaLicao"
+						immediate="true" update=":licao"
+						oncomplete="licaoEditDialog.show();" />
+					<p:dataTable value="#{licoes}" var="l"
+						emptyMessage="Nao existem licoes cadastradas.">
+						<p:column headerText="Licoes" style="width:90%">
+							<h:outputText value="#{l.nome}" />
+						</p:column>
+						<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_TUTOR">
+							<p:column headerText="Acoes" style="width:10%">
+								<p:commandButton icon="ui-icon-trash" style="width=18px;"
+									action="apagarLicao" update="@all"/>
+							</p:column>
+						</sec:authorize>
+					</p:dataTable>
+				</h:panelGrid>
+			</h:form>
+		</p:panel>
+
+		<p:dialog widgetVar="licaoEditDialog" width="400" height="400"
+			header="Cadastrar Licao" modal="true">
+			<h:form id="licao">
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

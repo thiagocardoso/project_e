@@ -7,18 +7,17 @@
 	<persistence-context></persistence-context>
 	
 	<input name="disciplina" required="true" />
-		
-	<view-state id="disciplinaEdit">
-		<transition on="salvar" to="ok">
-			<evaluate expression="disciplinaFacade.save(disciplina)" />
-		</transition>
-		<transition on="cancelar" to="cancel" />
-	</view-state>
-	
-	<subflow-state id="licaoList" subflow="web/licao/list">
-		<input name="flowScope.disciplina" value="disciplina" />
-	</subflow-state>
 
-	<end-state id="ok" commit="true" />
+	<view-state id="licaoEdit">
+		<on-render>
+			<set name="flowScope.licao" value="licaoController.novo(disciplina)" />
+		</on-render>
+		<transition on="salvar" to="ok" />
+		<transition on="cancelar" to="cancel"> 
+			<evaluate expression="disciplinaController.apagarLicao(disciplina, licao)" />
+		</transition>
+	</view-state>
+
+	<end-state id="ok" />
 	<end-state id="cancel" />
 </flow>

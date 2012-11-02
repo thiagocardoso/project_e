@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<persistence-context></persistence-context>
+	
+	<input name="disciplina" required="true" />
+		
+	<view-state id="disciplinaShow">
+		<on-render>
+			<evaluate result="flowScope.licoes" expression="disciplina.licoes" result-type="dataModel" />
+		</on-render>
+		<transition on="apagarLicao" to="disciplinaShow">
+			<evaluate expression="disciplinaController.apagarLicao(disciplina, licoes.selectedRow)" result="flowScope.disciplina" />
+		</transition>
+		<transition on="novaLicao" to="licaoEdit" />
+	</view-state>
+	
+	<subflow-state id="licaoEdit" subflow="web/licao/edit">
+		<input name="disciplina" value="disciplina" />
+		<transition on="ok" to="disciplinaShow">
+			<evaluate expression="disciplinaFacade.save(disciplina)" />
+		</transition>		
+	</subflow-state>
+
+	<end-state id="ok" commit="true" />
+	<end-state id="cancel" />
+</flow>

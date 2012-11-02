@@ -47,7 +47,7 @@ public class QLicaoExercicio extends EntityPathBase<LicaoExercicio> {
     public QLicaoExercicio(Class<? extends LicaoExercicio> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.exercicio = inits.isInitialized("exercicio") ? new QExercicio(forProperty("exercicio"), inits.get("exercicio")) : null;
-        this.licao = inits.isInitialized("licao") ? new QLicao(forProperty("licao")) : null;
+        this.licao = inits.isInitialized("licao") ? new QLicao(forProperty("licao"), inits.get("licao")) : null;
     }
 
 }

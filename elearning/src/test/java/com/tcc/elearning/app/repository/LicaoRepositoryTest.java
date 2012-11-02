@@ -1,7 +1,11 @@
 package com.tcc.elearning.app.repository;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
+
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +13,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
+import com.tcc.elearning.app.entity.Disciplina;
 import com.tcc.elearning.app.entity.Licao;
 import com.tcc.elearning.app.entity.QLicao;
 import com.tcc.elearning.config.ELearningConfig;
@@ -24,8 +28,10 @@ public class LicaoRepositoryTest {
 	@Autowired
 	LicaoRepository licaoRepository;
 
+	@Autowired
+	DisciplinaRepository disciplinaRepository;
+	
 	@Test
-	@Transactional
 	public void save() {
 		Licao licao = Licao.newLicao();
 		licao.setNome("Licao teste 1");
@@ -36,4 +42,24 @@ public class LicaoRepositoryTest {
 		assertNotNull(licaoRepository.findOne(QLicao.licao.nome.eq("Licao teste 1")));
 	}
 
+	@Test
+	public void findByDisciplina(){
+		Disciplina disciplina = Disciplina.newDisciplina("Nova Disciplina", "Disciplina de teste!");
+		
+		Licao licao = Licao.newLicao();
+		licao.setNome("Licao teste 1");
+		licao.setDescricao("Descricao de licao 1");
+		licao.setDisciplina(disciplina);
+		
+		disciplina.addLicao(licao);
+		
+		disciplinaRepository.save(disciplina);
+		disciplinaRepository.flush();
+		
+		List<Licao> busca = licaoRepository.findByDisciplina(disciplina);
+		assertNotNull(busca);
+		Assert.assertFalse(busca.isEmpty());
+		assertEquals("Licao teste 1", busca.get(0).getNome());
+		assertEquals("Nova Disciplina", busca.get(0).getDisciplina().getNome());
+	}
 }
