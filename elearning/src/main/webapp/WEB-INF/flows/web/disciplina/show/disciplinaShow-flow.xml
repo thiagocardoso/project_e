@@ -15,14 +15,22 @@
 		<transition on="apagarLicao" to="disciplinaShow">
 			<evaluate expression="disciplinaController.apagarLicao(disciplina, licoes.selectedRow)" result="flowScope.disciplina" />
 		</transition>
-		<transition on="novaLicao" to="licaoEdit" />
+		<transition on="novaLicao" to="licaoEdit"> 
+			<set name="flowScope.licao" value="licaoController.novo(disciplina)" />
+		</transition>
+		<transition on="editarLicao" to="licaoEdit">
+			<set name="flowScope.licao" value="licoes.selectedRow" />
+		</transition>
 	</view-state>
 	
 	<subflow-state id="licaoEdit" subflow="web/licao/edit">
-		<input name="disciplina" value="disciplina" />
+		<input name="licao" value="licao" />
 		<transition on="ok" to="disciplinaShow">
 			<evaluate expression="disciplinaFacade.save(disciplina)" />
 		</transition>		
+		<transition on="cancel" to="disciplinaShow">
+			<evaluate expression="disciplinaController.apagarLicao(disciplina, licao)" />
+		</transition>
 	</subflow-state>
 
 	<end-state id="ok" commit="true" />

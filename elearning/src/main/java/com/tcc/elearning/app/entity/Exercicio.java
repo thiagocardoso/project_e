@@ -45,6 +45,10 @@ public class Exercicio implements Serializable {
     @JoinColumn(name = "usuario_id")
     private Usuario criador;
     
+    @ManyToOne
+    @JoinColumn(name = "licao_id")
+    private Licao licao;
+    
     Exercicio() {
     }
     
@@ -115,5 +119,13 @@ public class Exercicio implements Serializable {
 
 	public void setTipoExercicio(TipoExercicio tipoExercicio) {
 		this.tipoExercicio = tipoExercicio;
+	}
+
+	public Licao getLicao() {
+		return licao;
+	}
+
+	public void setLicao(Licao licao) {
+		this.licao = licao;
 	}
 }

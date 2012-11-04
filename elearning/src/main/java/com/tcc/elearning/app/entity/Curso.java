@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -40,8 +42,7 @@ public class Curso implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
     
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @ManyToOne(cascade=CascadeType.REFRESH)
     private Usuario criador;
 
     @ManyToMany

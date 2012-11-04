@@ -26,6 +26,8 @@ public class QLicao extends EntityPathBase<Licao> {
 
     public final QDisciplina disciplina;
 
+    public final ListPath<Exercicio, QExercicio> exercicios = this.<Exercicio, QExercicio>createList("exercicios", Exercicio.class, QExercicio.class);
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath nome = createString("nome");

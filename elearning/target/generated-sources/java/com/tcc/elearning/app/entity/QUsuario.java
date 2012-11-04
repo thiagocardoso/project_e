@@ -20,6 +20,8 @@ public class QUsuario extends EntityPathBase<Usuario> {
 
     public final ListPath<Curso, QCurso> cursos = this.<Curso, QCurso>createList("cursos", Curso.class, QCurso.class);
 
+    public final ListPath<Curso, QCurso> cursosCriados = this.<Curso, QCurso>createList("cursosCriados", Curso.class, QCurso.class);
+
     public final StringPath email = createString("email");
 
     public final NumberPath<Long> id = createNumber("id", Long.class);

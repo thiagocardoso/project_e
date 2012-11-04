@@ -6,16 +6,11 @@
 
 	<persistence-context></persistence-context>
 	
-	<input name="disciplina" required="true" />
+	<input name="licao" required="true" />
 
 	<view-state id="licaoEdit">
-		<on-render>
-			<set name="flowScope.licao" value="licaoController.novo(disciplina)" />
-		</on-render>
 		<transition on="salvar" to="ok" />
-		<transition on="cancelar" to="cancel"> 
-			<evaluate expression="disciplinaController.apagarLicao(disciplina, licao)" />
-		</transition>
+		<transition on="cancelar" to="cancel" /> 
 	</view-state>
 
 	<end-state id="ok" />

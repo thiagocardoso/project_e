@@ -28,6 +28,8 @@ public class QExercicio extends EntityPathBase<Exercicio> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final QLicao licao;
+
     public final StringPath nome = createString("nome");
 
     public final EnumPath<com.tcc.elearning.app.entity.enums.TipoExercicio> tipoExercicio = createEnum("tipoExercicio", com.tcc.elearning.app.entity.enums.TipoExercicio.class);
@@ -53,6 +55,7 @@ public class QExercicio extends EntityPathBase<Exercicio> {
     public QExercicio(Class<? extends Exercicio> type, PathMetadata<?> metadata, PathInits inits) {
         super(type, metadata, inits);
         this.criador = inits.isInitialized("criador") ? new QUsuario(forProperty("criador")) : null;
+        this.licao = inits.isInitialized("licao") ? new QLicao(forProperty("licao"), inits.get("licao")) : null;
     }
 
 }

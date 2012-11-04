@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.concurrent.Immutable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,9 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
-
-import net.sf.cglib.beans.ImmutableBean;
 
 import org.hibernate.validator.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
@@ -55,6 +53,9 @@ public class Usuario implements UserDetails, Serializable {
 	@ManyToMany
     @JoinTable(name = "usuario_curso", joinColumns = @JoinColumn(name="usuario_id"), inverseJoinColumns = @JoinColumn(name="curso_id"))
     private List<Curso> cursos = Lists.newLinkedList();	
+	
+	@OneToMany(mappedBy="criador")
+	private List<Curso> cursosCriados = Lists.newLinkedList();
 	
     Usuario() {
     }
@@ -142,6 +143,14 @@ public class Usuario implements UserDetails, Serializable {
 
 	public void setCursos(List<Curso> cursos) {
 		this.cursos = cursos;
+	}
+	
+	public List<Curso> getCursosCriados() {
+		return cursosCriados;
+	}
+	
+	public void setCursosCriados(List<Curso> cursosCriados) {
+		this.cursosCriados = cursosCriados;
 	}
 
 	public boolean isMatriculado(Curso curso){

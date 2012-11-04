@@ -17,16 +17,16 @@
 				</h:panelGrid>
 
 				<h:panelGrid columns="1">
-					<p:commandButton value="Nova Licao" action="novaLicao" />
+					<p:commandButton value="Nova Licao" action="novaLicao"
+						immediate="true" update=":licao"
+						oncomplete="licaoEditDialog.show();" />
 					<p:dataTable value="#{licoes}" var="l"
 						emptyMessage="Nao existem licoes cadastradas.">
-						<p:column headerText="Licoes" style="width:250px;">
+						<p:column headerText="Licoes" style="width:90%">
 							<h:outputText value="#{l.nome}" />
 						</p:column>
 						<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_TUTOR">
-							<p:column headerText="Acoes" style="width:80px;">
-								<p:commandButton icon="ui-icon-pencil" style="width=18px;"
-									action="editarLicao" update="@all"/>
+							<p:column headerText="Acoes" style="width:10%">
 								<p:commandButton icon="ui-icon-trash" style="width=18px;"
 									action="apagarLicao" update="@all"/>
 							</p:column>
@@ -35,5 +35,11 @@
 				</h:panelGrid>
 			</h:form>
 		</p:panel>
+
+		<p:dialog widgetVar="licaoEditDialog" width="400" height="400"
+			header="Cadastrar Licao" modal="true">
+			<h:form id="licao">
+			</h:form>
+		</p:dialog>
 	</ui:define>
 </ui:composition>
