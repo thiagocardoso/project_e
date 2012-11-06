@@ -6,40 +6,37 @@
 	xmlns:sec="http://www.springframework.org/security/tags"
 	template="/WEB-INF/template/blank.xhtml">
 	<ui:define name="body">
-		<p:panel header="Informacoes da Disciplina">
+		<p:panel header="Informacoes da Licao">
 			<h:form>
 				<h:panelGrid columns="2">
 					<h:outputLabel for="nome" value="Nome:" />
-					<h:outputText id="nome" value="#{disciplina.nome}" />
+					<h:outputText id="nome" value="#{licao.nome}" />
 
 					<h:outputLabel for="descricao" value="Descricao:" />
-					<h:outputText id="descricao" value="#{disciplina.descricao}" />
+					<h:outputText id="descricao" value="#{licao.descricao}" escape="false" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="1">
-					<p:commandButton value="Nova Licao" action="novaLicao"
-						immediate="true" update=":licao"
-						oncomplete="licaoEditDialog.show();" />
-					<p:dataTable value="#{licoes}" var="l"
-						emptyMessage="Nao existem licoes cadastradas.">
-						<p:column headerText="Licoes" style="width:90%">
-							<h:outputText value="#{l.nome}" />
+					<p:commandButton value="Novo Exercicio" action="novoExercicio" />
+					<p:dataTable value="#{exercicios}" var="e"
+						emptyMessage="Nao existem exercicios cadastrados.">
+						<p:column headerText="Exercicios" style="width:250px;">
+							<h:outputText value="#{e.nome}" />
 						</p:column>
 						<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_TUTOR">
-							<p:column headerText="Acoes" style="width:10%">
+							<p:column headerText="Acoes" style="width:80px;">
+								<p:commandButton icon="ui-icon-pencil" style="width=18px;"
+									action="editarExercicio" update="@all"/>
 								<p:commandButton icon="ui-icon-trash" style="width=18px;"
-									action="apagarLicao" update="@all"/>
+									action="apagarExercicio" update="@all"/>
 							</p:column>
 						</sec:authorize>
 					</p:dataTable>
 				</h:panelGrid>
 			</h:form>
 		</p:panel>
-
-		<p:dialog widgetVar="licaoEditDialog" width="400" height="400"
-			header="Cadastrar Licao" modal="true">
-			<h:form id="licao">
-			</h:form>
-		</p:dialog>
+		<h:form>
+			<p:commandButton value="Voltar" action="cancelar" />
+		</h:form>
 	</ui:define>
 </ui:composition>

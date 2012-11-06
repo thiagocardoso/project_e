@@ -21,7 +21,7 @@
 					<p:dataTable value="#{licoes}" var="l"
 						emptyMessage="Nao existem licoes cadastradas.">
 						<p:column headerText="Licoes" style="width:250px;">
-							<h:outputText value="#{l.nome}" />
+							<p:commandLink value="#{l.nome}" action="mostrarLicao" />
 						</p:column>
 						<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_TUTOR">
 							<p:column headerText="Acoes" style="width:80px;">

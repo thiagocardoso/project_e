@@ -21,6 +21,9 @@
 		<transition on="editarLicao" to="licaoEdit">
 			<set name="flowScope.licao" value="licoes.selectedRow" />
 		</transition>
+		<transition on="mostrarLicao" to="licaoShow">
+			<set name="flowScope.licao" value="licoes.selectedRow" />
+		</transition>
 	</view-state>
 	
 	<subflow-state id="licaoEdit" subflow="web/licao/edit">
@@ -31,6 +34,12 @@
 		<transition on="cancel" to="disciplinaShow">
 			<evaluate expression="disciplinaController.apagarLicao(disciplina, licao)" />
 		</transition>
+	</subflow-state>
+
+	<subflow-state id="licaoShow" subflow="web/licao/show">
+		<input name="licao" value="licao" />
+		<transition on="ok" to="disciplinaShow" />
+		<transition on="cancel" to="disciplinaShow" />
 	</subflow-state>
 
 	<end-state id="ok" commit="true" />

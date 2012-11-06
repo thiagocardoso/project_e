@@ -9,7 +9,6 @@ import com.tcc.elearning.app.entity.Curso;
 import com.tcc.elearning.app.entity.Usuario;
 import com.tcc.elearning.app.facade.CursoFacade;
 import com.tcc.elearning.app.repository.CursoRepository;
-import com.tcc.elearning.app.repository.UsuarioRepository;
 
 @Controller
 public class CursoController {
@@ -20,13 +19,10 @@ public class CursoController {
 	CursoRepository cursoRepository;
 	
 	@Autowired
-	UsuarioRepository usuarioRepository;
-	
-	@Autowired
 	ApplicationController applicationController;
 	
 	public Curso novo(){
-		Usuario usuario = usuarioRepository.findOne(applicationController.getUsuarioAtivo().getId());
+		Usuario usuario = applicationController.getUsuarioAtivo();
 		
 		Curso curso = cursoFacade.novoCurso(); 
 		curso.setCriador(usuario);

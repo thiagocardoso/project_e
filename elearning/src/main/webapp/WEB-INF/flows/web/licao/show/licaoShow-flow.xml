@@ -8,18 +8,26 @@
 	
 	<input name="licao" required="true" />
 		
-	<view-state id="disciplinaShow">
+	<view-state id="licaoShow">
 		<on-render>
 			<evaluate result="flowScope.exercicios" expression="licao.exercicios" result-type="dataModel" />
 		</on-render>
-		<transition on="novoExercicio" to="exercicioEdit" />
+		<transition on="novoExercicio" to="exercicioEdit">
+			<set name="flowScope.exercicio" value="exercicioController.novo(licao)" />
+		</transition>
+		
+		<transition on="cancelar" to="cancel" />
+		
+		<transition on="apagarExercicio" to="ok"/>
+		<transition on="editarExercicio" to="exercicioEdit">
+			<set name="flowScope.exercicio" value="exercicios.selectedRow" />
+		</transition>
 	</view-state>
 	
 	<subflow-state id="exercicioEdit" subflow="web/exercicio/edit">
-		<input name="licao" value="licao" />
-		<transition on="ok" to="disciplinaShow">
-			<evaluate expression="disciplinaFacade.save(disciplina)" />
-		</transition>		
+		<input name="exercicio" value="exercicio" />
+		<transition on="ok" to="licaoShow" />
+		<transition on="cancel" to="licaoShow" />
 	</subflow-state>
 
 	<end-state id="ok" commit="true" />

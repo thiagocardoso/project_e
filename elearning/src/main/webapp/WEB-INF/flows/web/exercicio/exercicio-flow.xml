@@ -4,27 +4,17 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-	<persistence-context></persistence-context>
-	
-	<view-state id="exercicioList">
-		<transition on="buscar">
-			<evaluate expression="exercicioController.getExercicios()" result="viewScope.exercicios" result-type="dataModel" />
+	<subflow-state id="list" subflow="web/exercicio/list">
+		<transition on="ok" to="edit">
+			<set name="flowScope.exercicio" value="currentEvent.attributes.exercicio" />
 		</transition>
-		<transition on="novo" to="exercicioEdit">
-			<evaluate expression="exercicioController.novo()" result="flowScope.exercicio" />
-		</transition>
-		<transition on="editar" to="exercicioEdit">
-			<set name="flowScope.exercicio" value="exercicios.selectedRow" />
-		</transition>
-	</view-state>
+	</subflow-state>
 
-	<view-state id="exercicioEdit">
-		<transition on="salvar" to="ok">
-			<evaluate expression="exercicioFacade.save(exercicio)" />
-		</transition>
-		<transition on="cancelar" to="cancel" />
-	</view-state>
+	<subflow-state id="edit" subflow="web/exercicio/edit">
+		<input name="exercicio" value="flowScope.exercicio" />
+		<transition on="ok" to="ok" />
+		<transition on="cancel" to="list" />
+	</subflow-state>
 
-	<end-state id="ok" commit="true" />
-	<end-state id="cancel" />
+	<end-state id="ok" />
 </flow>
