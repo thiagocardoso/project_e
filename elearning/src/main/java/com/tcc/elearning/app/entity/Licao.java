@@ -23,56 +23,58 @@ import com.google.common.collect.Lists;
 public class Licao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-    
+
 	@Id
-    @GeneratedValue
-    private Long id;
+	@GeneratedValue
+	private Long id;
 
 	@Version
 	private Integer version;
-	
-    private String nome;
+
+	private String nome;
 
 	@Lob
-    private String descricao;
+	private String descricao;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataCriacao;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataCriacao;
 
-    @ManyToOne
-    @JoinColumn(name = "disciplina_id")
-    private Disciplina disciplina;    
-    
-    @OneToMany(mappedBy = "licao", cascade = CascadeType.ALL)
-    private List<Exercicio> exercicios = Lists.newLinkedList();
-    
-    Licao() {
-    }
+	@ManyToOne
+	@JoinColumn(name = "disciplina_id")
+	private Disciplina disciplina;
 
-    @Override
-    public int hashCode() {
-    	return Objects.hashCode(this.nome);
-    }
-    
-    @Override
-    public boolean equals(Object obj) {
-    	if(obj instanceof Licao){
-    		Licao other = (Licao) obj;
-    		return Objects.equal(this.nome, other.nome);
-    	}
-    	return false;
-    }
-    
-    @Override
-    public String toString() {
-    	return Objects.toStringHelper(Licao.class).add("nome", nome).toString();
-    }
-    
-    public static final Licao newLicao(){
-    	Licao licao = new Licao();
-    	licao.dataCriacao = new Date();
-    	return licao;
-    }
+	@OneToMany(mappedBy = "licao", cascade = CascadeType.ALL)
+	private List<Exercicio> exercicios = Lists.newLinkedList();
+
+	Licao() {
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(this.disciplina, this.nome);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Licao) {
+			Licao other = (Licao) obj;
+			return Objects.equal(this.disciplina, other.disciplina)
+					&& Objects.equal(this.nome, other.nome);
+		}
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		return Objects.toStringHelper(Licao.class)
+				.add("disciplina", disciplina).add("nome", nome).toString();
+	}
+
+	public static final Licao newLicao() {
+		Licao licao = new Licao();
+		licao.dataCriacao = new Date();
+		return licao;
+	}
 
 	public String getNome() {
 		return nome;

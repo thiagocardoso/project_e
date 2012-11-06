@@ -26,6 +26,8 @@ public class QExercicio extends EntityPathBase<Exercicio> {
 
     public final StringPath descricao = createString("descricao");
 
+    public final ListPath<ExercicioAlternativa, QExercicioAlternativa> exercicioAlternativas = this.<ExercicioAlternativa, QExercicioAlternativa>createList("exercicioAlternativas", ExercicioAlternativa.class, QExercicioAlternativa.class);
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final QLicao licao;

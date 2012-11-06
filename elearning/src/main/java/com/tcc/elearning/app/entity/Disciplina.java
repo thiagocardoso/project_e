@@ -41,15 +41,15 @@ public class Disciplina implements Serializable {
 	private Date dataCriacao;
 
 	@ManyToMany
-	@JoinTable(name = "disciplina_material", joinColumns = @JoinColumn(name = "disciplina_id"), inverseJoinColumns = @JoinColumn(name="material_id"))
+	@JoinTable(name = "disciplina_material", joinColumns = @JoinColumn(name = "disciplina_id"), inverseJoinColumns = @JoinColumn(name = "material_id"))
 	private List<Material> materiais = Lists.newLinkedList();
-	
-	@ManyToMany(mappedBy="disciplinas")
+
+	@ManyToMany(mappedBy = "disciplinas")
 	private List<Curso> cursos;
-	
+
 	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
 	private List<Licao> licoes = Lists.newLinkedList();
-	
+
 	Disciplina() {
 	}
 
@@ -65,6 +65,26 @@ public class Disciplina implements Serializable {
 		disciplina.descricao = descricao;
 		disciplina.dataCriacao = new Date();
 		return disciplina;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(this.nome);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Disciplina) {
+			Disciplina other = (Disciplina) obj;
+			return Objects.equal(this.nome, other.nome);
+		}
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		return Objects.toStringHelper(Disciplina.class).add("nome", nome)
+				.toString();
 	}
 
 	public Long getId() {
@@ -103,30 +123,10 @@ public class Disciplina implements Serializable {
 		this.dataCriacao = dataCriacao;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hashCode(this);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof Disciplina) {
-			Disciplina other = (Disciplina) obj;
-			return Objects.equal(this.nome, other.nome);
-		}
-		return false;
-	}
-
-	@Override
-	public String toString() {
-		return Objects.toStringHelper(Disciplina.class).add("nome", nome)
-				.toString();
-	}
-
 	public List<Material> getMateriais() {
 		return materiais;
 	}
-	
+
 	public void setMateriais(List<Material> materiais) {
 		this.materiais = materiais;
 	}
@@ -142,8 +142,8 @@ public class Disciplina implements Serializable {
 	public void setLicoes(List<Licao> licoes) {
 		this.licoes = licoes;
 	}
-	
-	public Disciplina addLicao(Licao licao){
+
+	public Disciplina addLicao(Licao licao) {
 		this.licoes.add(licao);
 		return this;
 	}
