@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<persistence-context/>
+	<input name="alternativa" required="true" />
+
+	<on-start>
+		<set name="conversationScope.alternativa" value="alternativa" />
+	</on-start>
+
+	<view-state id="alternativaEdit">
+		<transition on="salvar" to="ok" />
+		<transition on="cancelar" to="cancel" /> 
+	</view-state>
+
+	<end-state id="ok" commit="true">
+		<output name="alternativa" value="alternativa"/>
+	</end-state>
+	<end-state id="cancel" />
+</flow>

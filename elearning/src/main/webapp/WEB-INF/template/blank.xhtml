@@ -9,11 +9,12 @@
 	<h:head>
 		<title>eLearning</title>
 		<style type="text/css">
-			.ui-widget,.ui-widget .ui-widget {
-				font-size: 12px !important;
-			}
-		</style>
+.ui-widget,.ui-widget .ui-widget {
+	font-size: 12px !important;
+}
+</style>
 	</h:head>
+	<h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
 	<h:body>
 		<p:growl id="messages" globalOnly="true" autoUpdate="true" />
 		<ui:insert name="body" />

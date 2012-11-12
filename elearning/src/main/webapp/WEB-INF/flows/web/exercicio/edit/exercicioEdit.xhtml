@@ -3,31 +3,90 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/tags"
 	template="/WEB-INF/template/blank.xhtml">
 	<ui:define name="body">
-		<h:form>
+		<h:form id="cadastroExercicio">
 			<p:panel header="Cadastro de Exercicio">
-				<h:panelGrid columns="3">
-					<h:outputLabel for="nome" value="Nome:" />
-					<p:inputText id="nome" value="#{exercicio.nome}" size="60" />
-					<p:message for="nome" />
+				<h:panelGrid>
+					<p:row>
+						<p:column>
+							<p><strong><h:outputLabel for="nome" value="Nome" /></strong></p>
+							<p:inputText id="nome" value="#{exercicio.nome}" size="63" />
+							<p:message for="nome" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p><strong><h:outputLabel for="tipoExercicio" value="Tipo do Exercicio" /></strong></p>
+							<p:selectOneMenu id="tipoExercicio"
+								value="#{exercicio.tipoExercicio}" size="60">
+								<f:selectItem itemLabel="Dissertativo" itemValue="DISSERTATIVO" />
+								<f:selectItem itemLabel="Multipla Escolha"
+									itemValue="MULTIPLA_ESCOLHA" />
+								<f:selectItem itemLabel="Relacione Colunas"
+									itemValue="RELACIONE_COLUNAS" />
+							</p:selectOneMenu>
+							<p:message for="tipoExercicio" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p><strong><h:outputLabel for="descricao" value="Descricao" /></strong></p>
+							<p:editor id="descricao" value="#{exercicio.descricao}"
+								style="width:500px;" />
+							<p:message for="descricao" />
+						</p:column>
+					</p:row>
+
+				</h:panelGrid>
+				
+				<br />
+				<h:panelGrid columns="1">
+					<p:dataTable id="dataTableAlternativas" value="#{alternativas}"
+						var="a" emptyMessage="Nao existem alternativas cadastradas."
+						style="width:500px;">
 	
-					<h:outputLabel for="descricao" value="Descricao:" />
-					<p:inputTextarea id="descricao" value="#{exercicio.descricao}" size="60" />
-					<p:message for="descricao" />
-					 
-					<h:outputLabel for="tipoExercicio" value="Tipo do Exercicio:" />
-					<p:selectOneMenu id="tipoExercicio" value="#{exercicio.tipoExercicio}" size="60">
-						<f:selectItem itemLabel="Dissertativo" itemValue="DISSERTATIVO" />
-						<f:selectItem itemLabel="Multipla Escolha" itemValue="MULTIPLA_ESCOLHA" />
-						<f:selectItem itemLabel="Relacione Colunas" itemValue="RELACIONE_COLUNAS" />
-					</p:selectOneMenu>
-					<p:message for="tipoExercicio" />
-					
+						<p:column headerText="Alt.Correta"
+							style="width:40px; text-align:center;">
+							<p:commandButton icon="ui-icon-circle-check" style="width:25px;"
+								action="marcarAlternativaCorreta"
+								disabled="#{a.alternativaCorreta}" update="@all" />
+						</p:column>
+	
+						<p:column headerText="Alternativas" style="width:250px;">
+							<h:outputText value="#{a.titulo}" />
+						</p:column>
+	
+						<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_TUTOR">
+							<p:column headerText="Acoes" style="width:80px;">
+								<p:commandButton icon="ui-icon-pencil" style="width=18px;"
+									action="editarAlternativa" update="@all" />
+								<p:commandButton icon="ui-icon-trash" style="width=18px;"
+									action="excluirAlternativa" update="@all" />
+							</p:column>
+						</sec:authorize>
+						
+						<f:facet name="footer">
+							<p:commandButton action="adicionarAlternativa"
+								value="Nova alternativa" update=":alternativaEdit"
+								oncomplete="alternativaEditDialog.show();" />
+						</f:facet>
+					</p:dataTable>
 				</h:panelGrid>
 			</p:panel>
 			<p:commandButton value="Salvar" action="salvar" />
 			<p:commandButton value="Cancelar" action="cancelar" />
 		</h:form>
+
+		<p:dialog widgetVar="alternativaEditDialog" width="300" height="150"
+			header="Cadastrar Alternativa">
+			<h:form id="alternativaEdit">
+			</h:form>
+			<p:ajax event="close"
+				update=":cadastroExercicio:dataTableAlternativas" />
+		</p:dialog>
 	</ui:define>
 </ui:composition>

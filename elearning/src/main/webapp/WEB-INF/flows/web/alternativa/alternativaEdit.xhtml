@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/blank.xhtml">
+	<ui:define name="body">
+		<h:form id="alternativaEdit">
+			<p:panel header="Cadastrar Alternativa">
+				<h:panelGrid columns="3">
+					<h:outputLabel for="titulo" value="Titulo:" />
+					<p:inputText id="titulo" value="#{alternativa.titulo}" size="60" />
+					<p:message for="titulo" />
+
+					<h:outputLabel for="descricao" value="Descricao:" />
+					<p:editor id="descricao" value="#{alternativa.descricao}"
+						width="400" height="300" />
+					<p:message for="descricao" />
+				</h:panelGrid>
+			</p:panel>
+			<p:commandButton value="Salvar" action="salvar" />
+			<p:commandButton value="Cancelar" action="cancelar" />
+		</h:form>
+	</ui:define>
+</ui:composition>

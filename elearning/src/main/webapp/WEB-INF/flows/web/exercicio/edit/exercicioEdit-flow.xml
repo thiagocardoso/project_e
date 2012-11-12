@@ -9,11 +9,42 @@
 	<input name="exercicio" required="true" />
 	
 	<view-state id="exercicioEdit">
+		<on-render>
+			<evaluate result="conversationScope.alternativas" expression="exercicio.exercicioAlternativas" result-type="dataModel" />
+		</on-render>
 		<transition on="salvar" to="ok">
 			<evaluate expression="exercicioFacade.save(exercicio)" />
 		</transition>
+		
+		<transition on="adicionarAlternativa" to="alternativaEdit">
+			<set name="conversationScope.alternativa" value="alternativaController.novo(exercicio)" />
+		</transition>
+		
+		<transition on="editarAlternativa" to="alternativaEdit">
+			<set name="conversationScope.alternativa" value="alternativas.selectedRow" />
+		</transition>
+		
+		<transition on="excluirAlternativa" to="exercicioEdit">
+			<evaluate expression="exercicioController.excluirAlternativa(exercicio, alternativas.selectedRow)" />
+			<evaluate result="conversationScope.alternativas" expression="exercicio.exercicioAlternativas" result-type="dataModel" />
+		</transition>
+		
+		<transition on="marcarAlternativaCorreta" to="exercicioEdit">
+			<evaluate expression="exercicioController.marcarAlternativaCorreta(exercicio, alternativas.selectedRow)" />
+			<evaluate result="conversationScope.alternativas" expression="exercicio.exercicioAlternativas" result-type="dataModel" />
+		</transition>
+		
 		<transition on="cancelar" to="cancel" />
 	</view-state>
+	
+	<subflow-state id="alternativaEdit" subflow="web/alternativa">
+		<input name="alternativa" value="alternativa" />
+		<transition on="ok" to="exercicioEdit">
+			<evaluate expression="exercicioController.addAlternativa(exercicio, currentEvent.attributes.alternativa)" />
+			<evaluate result="conversationScope.alternativas" expression="exercicio.exercicioAlternativas" result-type="dataModel" />
+		</transition>
+		<transition on="cancel" to="exercicioEdit"/>
+	</subflow-state>
 
 	<end-state id="ok" commit="true" />
 	<end-state id="cancel" />

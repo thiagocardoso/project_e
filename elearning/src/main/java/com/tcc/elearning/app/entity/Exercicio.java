@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -52,7 +53,7 @@ public class Exercicio implements Serializable {
 	@JoinColumn(name = "licao_id")
 	private Licao licao;
 	
-	@OneToMany(mappedBy = "exercicio")
+	@OneToMany(mappedBy = "exercicio", cascade = CascadeType.ALL)
 	private List<ExercicioAlternativa> exercicioAlternativas = Lists.newLinkedList();
 
 	Exercicio() {
@@ -143,5 +144,33 @@ public class Exercicio implements Serializable {
 
 	public void setExercicioAlternativas(List<ExercicioAlternativa> exercicioAlternativas) {
 		this.exercicioAlternativas = exercicioAlternativas;
+	}
+	
+	public Exercicio addAlternativa(ExercicioAlternativa exercicioAlternativa){
+		this.getExercicioAlternativas().add(exercicioAlternativa);
+		return this;
+	}
+	
+	public Exercicio excluirAlternativa(ExercicioAlternativa exercicioAlternativa){
+		if(this.getExercicioAlternativas().contains(exercicioAlternativa)){
+			this.getExercicioAlternativas().remove(exercicioAlternativa);
+		}
+		return this;
+	}
+	
+	public Exercicio marcarTodasAlternativasIncorretas(){
+		for(ExercicioAlternativa exercicioAlternativa : exercicioAlternativas){
+			exercicioAlternativa.setAlternativaCorreta(Boolean.FALSE);
+		}
+		return this;
+	}
+	
+	public Exercicio marcarAlternativaCorreta(ExercicioAlternativa exercicioAlternativa){
+		if(exercicioAlternativas.contains(exercicioAlternativa)){
+			ExercicioAlternativa salvo = exercicioAlternativas.get(exercicioAlternativas.indexOf(exercicioAlternativa));
+			salvo.setAlternativaCorreta(Boolean.TRUE);
+		}
+		
+		return this;
 	}
 }
